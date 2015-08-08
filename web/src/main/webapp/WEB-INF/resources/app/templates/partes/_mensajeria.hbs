@@ -1,0 +1,78 @@
+<ul class="nav navbar-nav navbar-right mensajes">
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <span class="hide-xs"><i class="fa fa-envelope fa-fw fa-lg"></i></span>
+      <span class="visible-xs"><i class="fa fa-envelope fa-fw"></i> Mensajes</span>
+      <span class="badge">{{mensajes.count}}</span>
+    </a>
+    <ul class="dropdown-menu dropdown-messages">
+      {{#each mensaje}}
+      <li>
+        <a href="#">
+          <p>
+            <span class="right text-muted">
+              <em>{{tiempoRelativo mensaje.creado}}</em>
+            </span>
+            <strong>{{mensaje.remitente}}</strong>
+          </p>
+          <p>{{mensaje.contenido}}</p>
+        </a>
+      </li>
+      <li class="divider"></li>
+      {{/each}}
+      <li class="divider"></li>
+      <li>
+        <a class="text-center" href="#">
+          <strong>Leer todos los mensajes </strong>
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </li>
+    </ul>
+    <!-- /.dropdown-messages -->
+  </li>
+  <!-- /.dropdown -->
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <span class="hide-xs"><i class="fa fa-bell fa-fw fa-lg"></i></span>
+      <span class="visible-xs"><i class="fa fa-bell fa-fw"></i> Notificaciones</span>
+      <span class="badge">{{notificaciones.count}}</span>
+    </a>
+    <ul class="dropdown-menu dropdown-alerts">
+      {{#each notificacion in controller}}
+      <li>
+        <a href="#">
+          <div>
+            <i class="fa fa-comment fa-fw"></i>{{notificacion.contenido}}
+            <p class="text-right text-muted small">{{tiempoRelativo notificacion.creado}}</p>
+          </div>
+        </a>
+      </li>
+      <li class="divider"></li>
+      {{/each}}
+      <li class="divider"></li>
+      <li>
+        <a class="text-center" href="#">
+          <strong>Ver todas las alertas </strong>
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </li>
+    </ul>
+    <!-- /.dropdown-alerts -->
+  </li>
+  <!-- /.dropdown -->
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <span class="hide-xs"><i class="fa fa-user fa-fw fa-lg"></i></span>
+      <span class="visible-xs"><i class="fa fa-user fa-fw"></i> @Username</span>
+    </a>
+    <ul class="dropdown-menu dropdown-user">
+      <li><a href="#"><i class="fa fa-heart fa-fw"></i> Mi perfil</a>
+      </li>
+      <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuraciones</a>
+      </li>
+      <li class="divider"></li>
+      <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a>
+      </li>
+    </ul>
+  </li>
+</ul>

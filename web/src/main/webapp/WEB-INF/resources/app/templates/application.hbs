@@ -1,0 +1,44 @@
+<!-- Dropdown Structure -->
+<ul id="configuracion" class="dropdown-content">
+  <li> {{#link-to 'empresas'}} Empresas {{/link-to}} </li>
+  <li> {{#link-to 'usuarios'}} Usuarios {{/link-to}} </li>
+  <li> {{#link-to 'permisos'}}Permisos {{/link-to}} </li>
+  <li> {{#link-to 'modulos'}} Módulos {{/link-to}} </li>
+  <li> {{#link-to 'entidades'}} Entidades {{/link-to}} </li>
+</ul>
+<ul id="mensajeria" class="dropdown-content">
+  <li> {{#link-to 'destinatarios'}} Destinatarios {{/link-to}} </li>
+  <li> {{#link-to 'usuarios'}} Usuarios {{/link-to}} </li>
+  <li> {{#link-to 'permisos'}}Permisos {{/link-to}} </li>
+  <li> {{#link-to 'modulos'}} Módulos {{/link-to}} </li>
+  <li> {{#link-to 'entidades'}} Entidades {{/link-to}} </li>
+</ul>
+<nav>
+  <div class="nav-wrapper deep-orange darken-1">
+    <a href="#" class="brand-logo">
+      <img src="resources/images/tangerine_blanco.png" class="logo-menu">
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="#/localizacion"><i class="icon icon-location left"></i>Localización</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-button" href="javascript:void(0)" data-activates="configuracion">
+      	<i class="icon icon-settings left"></i>Configuración<i class="icon icon-down-open right"></i></a>
+      </li>
+      <li><a class="dropdown-button" href="javascript:void(0)" data-activates="mensajeria">
+        <i class="icon icon-settings left"></i>Mensajes<i class="icon icon-down-open right"></i></a>
+      </li>
+      <li><a href="tangerineapp/logout"><i class="icon icon-logout left"></i>Salir</a></li>
+    </ul>
+  </div>
+</nav>
+<!-- <div id="wrapper" {{bind-attr class=":container-fluid menuMostrado:active"}}> -->
+  <!-- <div id="sidebar-wrapper">
+    {{view "menuLateral"}}
+  </div> -->
+  <div class="container">
+<!--     <div class="show-xs hide-sm hide-on-large-only hide-xl hamburguesa-container">
+      <i class="fa fa-bars" id="hamburguesa"></i>
+    </div> -->
+    {{outlet}}
+  </div>
+<!-- </div> -->

@@ -1,0 +1,66 @@
+{{view "barraAcciones"}}
+<form role="form" class="col s12">
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="nombre"}}
+      <label {{bind-attr class="view.active"}}>{{tag "nombre"}}</label>
+      {{view "inputValidable" valueBinding="nombre" class="form-control"}}
+    {{/view}}
+  </div>
+  <div class="row">
+    {{#view "formGroup" ancho="6" campo="alias"}}
+      <label {{bind-attr class="view.active"}}>{{tag "alias"}}</label>
+      {{view "inputValidable" valueBinding="alias" class="form-control"}}
+    {{/view}}
+  </div>
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="documento"}}
+      <label {{bind-attr class="view.active"}}>{{tag "documento"}}</label>
+      {{view "inputValidable" valueBinding="documento" class="form-control"}}
+    {{/view}}
+  </div>
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="clave"}}
+      <label {{bind-attr class="view.active"}}>{{tag "clave"}}</label>
+      {{view "inputValidable" valueBinding="clave" type="password" class="form-control"}}
+    {{/view}}
+  </div>
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="telefono"}}
+      <label {{bind-attr class="view.active"}}>{{tag "telefono"}}</label>
+      {{view "inputValidable" valueBinding="telefono" class="form-control"}}
+    {{/view}}
+  </div>
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="email"}}
+      <label {{bind-attr class="view.active"}}>{{tag "email"}}</label>
+      {{view "inputValidable" valueBinding="email" class="form-control" type="email"}}
+    {{/view}}
+  </div>
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="imei"}}
+      <label {{bind-attr class="view.active"}}>{{tag "imei"}}</label>
+      {{view "inputValidable" valueBinding="imei" class="form-control"}}
+    {{/view}}
+  </div>
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="imsi"}}
+      <label {{bind-attr class="view.active"}}>{{tag "imsi"}}</label>
+      {{view "inputValidable" valueBinding="imsi" class="form-control"}}
+    {{/view}}
+  </div>
+  <div class="row">  
+    {{view "formSelect" ancho="6" opciones=lista_empresas placeholder="Seleccione una empresa de la lista" label="Empresa"}}
+  </div>
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="horaInicioMuestra"}}
+      <label {{bind-attr class="view.active"}}>{{tag "horaInicioMuestra"}}</label>
+      {{view "inputValidable" valueBinding="horaInicioMuestra" class="form-control"}}
+    {{/view}}
+  </div>
+  <div class="row">  
+    {{#view "formGroup" ancho="6" campo="horaFinMuestra"}}
+      <label {{bind-attr class="view.active"}}>{{tag "horaFinMuestra"}}</label>
+      {{view "inputValidable" valueBinding="horaFinMuestra" class="form-control"}}
+    {{/view}}
+  </div>
+</form>

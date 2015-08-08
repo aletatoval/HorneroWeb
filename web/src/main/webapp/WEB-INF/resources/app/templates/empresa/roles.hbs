@@ -1,0 +1,36 @@
+{{view "barraAcciones"}}
+<div class="table-responsive col m12 hide-on-med-and-down">
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each rol in roles}}
+        {{#view "filaTabla" modelo=rol}}
+          {{#if view.editar}}
+            <td>
+              <div class="input-field">
+                {{input valueBinding="rol.nombre" type="text" placeholder="nuevo rol" required="true"}}
+              </div>
+            </td>
+            <td class="right-align">
+              <button class="btn btn-xs white black-text" {{action "cancelar" target="view"}}>Cancelar <i class="icon icon-cancel"></i></button>
+              <button class="btn btn-xs teal" {{action "guardar" target="view"}}>Guardar <i class="icon icon-check"></i></button>
+            </td>
+          {{else}}
+            <td>{{rol.nombre}}</td>
+            <td class="right-align">
+              <button class="btn btn-xs teal tooltipped" data-position="bottom" data-delay="25" data-tooltip="Editar" {{action "editar" target="view"}}><i class="icon icon-pencil"></i></button>
+              {{#link-to "empresa.rol" model rol class="btn btn-xs teal"}}<i class="icon icon-key tooltipped" data-position="bottom" data-delay="25" data-tooltip="Configurar permisos"></i>{{/link-to}}
+            </td>
+          {{/if}}
+        {{/view}}
+      {{else}}
+        <tr><p class="center teal-text">No hay ningún rol asignado a esta Empresa</p></tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

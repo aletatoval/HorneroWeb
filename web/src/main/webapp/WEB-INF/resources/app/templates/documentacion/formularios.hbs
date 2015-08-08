@@ -1,0 +1,59 @@
+<h2>Formularios</h2><hr>
+<p>Este es un ejemplo de los campos que se utilizarán en los formularios, dependiendo del tipo de dato utilizando las vistas de Ember.</p>
+  <button type="button" class="btn white black-text right" {{bind-attr class=mostrando:active}} {{action "editar"}}>Editar</button>
+
+  <form role="form" class="form-horizontal">
+    <fieldset {{bind-attr disabled=mostrando}}>
+      <div class="datos col m10">
+        <div class="input-field">
+          <label class="col m2 control-label">Texto</label>
+          <div class="col m10">
+            {{view Ember.TextField class="form-control" value="Texto texto"}}
+          </div>
+        </div>        
+        <div class="input-field">
+          <label class="col m2 control-label">Cifra</label>
+          <div class="col m10">
+            {{view App.NumberField class="form-control"  value="50000000"}}
+          </div>
+        </div>
+        <div class="input-field">
+          <label class="col m2 control-label">Monto</label>
+          <div class="col m10">
+            {{view App.MontoField class="form-control"  value="585000000"}}
+          </div>
+        </div>
+        <div class="form-group ">
+          <label class="col m2 control-label" for="inputError1">Email</label>
+          <div class="col m10">
+            {{view App.EmailField class="form-control" type="email" value="ejemplo@luis.com"}}
+          </div>
+        </div> <div class="input-field">
+          <label class="col m2 control-label" >Fecha</label>
+          <div class="col m10">
+            {{view App.FechaField class="form-control" value="2002-03-30 23:45:56"}}
+          </div>
+        </div>
+        <div class="input-field">
+          <label class="col m2 control-label">Hora</label>
+          <div class="col m10">
+            {{view App.HoraField class="form-control" value="2003-03-30 23:45:56"}}
+          </div>
+        </div>
+        <div class="input-field">
+          <label class="col m2 control-label">Localización</label>
+          <div class="col m5">
+            {{view App.LocalizacionField class="form-control" value="-24.984731"}}
+          </div>
+          <div class="col m5">
+            {{view App.LocalizacionField class="form-control" value="-56.601563"}}
+          </div>
+          <div class="col m5">
+            <h3>Mapa</h3>
+            {{google-maps  latitude="40.7142700" longitude="-74.0059700"}}             
+          
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>

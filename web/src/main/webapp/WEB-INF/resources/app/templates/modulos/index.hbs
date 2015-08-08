@@ -1,0 +1,43 @@
+{{view "barraAcciones"}}
+<div class="table-responsive col m12 hide-on-med-and-down">
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>{{view "tituloColumna" nombre="nombre"}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each modulo in model}}
+        {{#view "filaTabla" modelo=modulo}}
+          <td>{{modulo.nombre}}</td>
+          <td class="right-align">
+            {{#if modulo.esActivo}}
+              {{#link-to "modulo" modulo class="btn btn-xs teal"  title="Abrir"}} <i class="icon icon-eye">  </i> {{/link-to}}
+              {{#link-to "modulo.edit" modulo class="btn btn-xs teal"  title="Editar"}} <i class="icon icon-pencil"></i> {{/link-to}}
+               <button class="btn btn-xs teal tooltipped" data-position="bottom" data-delay="25" data-tooltip="Desactivar"{{action 'desactivar' target='view'}}>
+                    <i class="icon icon-cancel"></i>
+                  </button>
+            {{else}}
+               <button class="btn btn-xs teal tooltipped" data-position="bottom" data-delay="25" data-tooltip="Activar"{{action 'activar' target='view'}}>
+                 <i class="icon icon-check"></i>
+              </button>
+              {{/if}}
+          </td>
+        {{/view}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div class="row show-xs show-sm hide-on-large-only">
+  {{#each modulo in model}}
+    <div class="col s12 m4">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3>{{#link-to "modulo" modulo}} {{modulo.nombre}} {{/link-to}}</h3>
+        </div>
+
+      </div>
+    </div>
+  {{/each}}
+</div>

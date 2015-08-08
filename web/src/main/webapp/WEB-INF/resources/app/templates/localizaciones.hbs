@@ -1,0 +1,9 @@
+<h1>Localizacions</h1>
+
+<ul>
+ {{#each model}}
+ <li>{{#link-to 'localizacion' this}}{{this.id}}{{/link-to}}</li>
+  {{/each}}
+</ul>
+
+{{outlet}}

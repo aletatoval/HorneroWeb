@@ -1,0 +1,81 @@
+{{view "barraAcciones"}}
+{{#view "wizard" pasos=2}}
+<div class="row">
+<!-- Indicador de pasos -->
+	<div class="col m6 offset-m3">
+		<ul class="pasos">
+			{{#view "indicePasoWizard" paso=1}} <a {{bind-attr class="estado"}}>Módulos</a> {{/view}}
+			<li {{bind-attr class=":separador esValido:permitido:bloqueado"}}>
+				<i class="icon icon-right-thin"></i>
+			</li>
+			{{#view "indicePasoWizard" paso=2}} <a {{bind-attr class="estado"}}>Entidades</a> {{/view}}
+		</ul>
+	</div>
+<!-- Pasos -->
+<!-- Paso 1: lista seleccionable de módulos -->
+	<div class="col m8 offset-m2">
+	{{#view "pasoWizard" paso=1 }}
+		<table class="table tabla-seleccionable">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Nombre</th>
+					<th>Entidades</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each modulo in lista_modulos}}
+					{{#view "checkboxTabla" multiple="true" item=modulo}}
+						<td><i {{bind-attr class="view.seleccionado:white-text :icon view.icono"}}></i></td>
+						<td>{{modulo.nombre}}</td>
+						<td>{{modulo.entidades.length}}</td>
+					{{/view}}
+				{{/each}}
+			</tbody>
+		</table>
+	{{/view}}
+		<!-- Paso 2: lista editable de entidades -->
+	</div>
+	<div class="col m12">
+	{{#view "pasoWizard" paso=2 }}
+		<table class="bordered">
+			<thead>
+				<tr>
+					<th>Entidad</th>
+					<th>URLs</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each entidad in entidades}}
+				<tr>
+					<td>{{entidad.nombre}}</td>
+					<td>
+						<form>
+							<label class="control-label">URL Entrada</label>
+							<div class="input-field">
+								<i class="fa fa-cloud-download prefix"></i>
+								{{input class="form-control" value=entidad.urlEntrada placeholder="dirección URL para entrada de datos"}}
+							</div>
+							<label class="control-label">URL Salida</label>
+							<div class="input-field">
+								<i class="fa fa-cloud-upload prefix"></i>
+								{{input class="form-control" value=entidad.urlSalida placeholder="dirección URL para salida de datos"}}
+							</div>
+							<label class="control-label">URL Extra</label>
+							<div class="input-field">
+								<i class="fa fa-cloud prefix"></i>
+								{{input class="form-control" value=entidad.urlExtra placeholder="dirección URL extra"}}
+							</div>
+						</form>
+					</td>
+				</tr>
+				{{else}}
+					<tr>no hay entidades :(</tr>
+				{{/each}}
+			</tbody>
+		</table>
+		{{/view}}
+		<!-- Botones -->
+	</div>
+</div>
+  {{/view}}

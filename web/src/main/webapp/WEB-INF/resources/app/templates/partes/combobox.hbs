@@ -1,0 +1,26 @@
+<div class="combobox-container input-group">
+	<!-- input visible -->
+	{{view "inputCombo" placeholder="seleccione una opción" viewName="inputComboInstancia"}}
+
+	<!-- iconos de desplegar o limpiar que se muestran en el input -->
+	<span data-dropdown="dropdown" class="add-on input-group-addon btn dropdown-toggle">
+		<span {{bind-attr class="view.inputConTexto:hide"}} {{action "desplegar" target="view"}}>
+			<i  class="fa fa-caret-down"></i>
+		</span>
+		<span {{bind-attr class="view.inputConTexto::hide"}} {{action "plegar" target="view"}}>
+			<i class="fa fa-times"></i>
+		</span>
+	</span>
+</div>
+
+{{#view "listaOpciones"}}
+	{{#each opcion in view.opciones}}
+		<li>
+			<a {{action "seleccionar" opcion target="view"}}>{{opcion.nombre}}</a>
+		</li>
+	{{else}}
+	<li>
+		<a> No se encontraron resultados. </a>
+	</li>
+	{{/each}}
+{{/view}}

@@ -1,0 +1,56 @@
+.buscador {
+	input.input-busqueda{
+		background: none;
+		border: none;
+		width: 0px;
+		transition: all 0.5s;
+	}
+
+	&.activo{
+		input.input-busqueda {
+			background: #fff;
+			border-bottom: 1px solid #ccc;
+			width: 100%;
+			line-height: 1;
+			transition: all 0.5s;
+			width: 350px;
+		}
+
+		.lupa {
+			border: 1px solid #ccc;
+    	border-left: 0 none;
+  	  border-radius: 0;
+  	  background: #fff;
+  	  &:hover{
+  	  	color: $brand-k;
+  	  }
+	  }
+	}
+}
+
+#botones {
+	& > div {
+	  display: inline-block;
+	  .btn {
+	  	padding: 0 1rem !important;
+	  }
+	}
+	.btn {
+		padding: 0 1rem !important;
+	}
+}
+.barra-acciones {
+	&.pinned {
+		@extend .grey.lighten-4;
+		@extend .z-depth-2;
+    left: 0;
+		z-index: 10;
+    margin: 0 !important;
+    padding: 10px 20px;
+    position: fixed !important;
+    right: 0;
+		.nav-ruta {
+			padding-top: 10px;
+		}
+	}
+}

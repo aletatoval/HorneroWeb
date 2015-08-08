@@ -1,0 +1,15 @@
+/* Bar chart */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: $brand-k;
+}
+
+.x.axis path {
+  display: none;
+}

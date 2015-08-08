@@ -1,0 +1,15 @@
+<div {{bind-attr class=":row :form-filtros buscarAvanzadoActivo:z-depth-1-inset"}}>
+		<form id="form-filtros" {{action "filtrar" on="submit"}}>
+			{{log view.campos}}
+			{{#each campo in view.campos}}
+				<div class="input-field col m3">
+					<label>{{tag campo.nombre}}</label>
+					{{input name=campo.nombre value=objeto.campo.nombre class="form-control"}}
+				</div>
+			{{/each}}
+			<div class="col m4 right" style="margin-top: 10px">
+				<button class="btn orange darken-4" type="submit">Filtrar</button>
+				<button class="btn white black-text" {{action "cancelarFiltrado"}}>Cancelar</button>
+			</div>
+		</form>
+</div>

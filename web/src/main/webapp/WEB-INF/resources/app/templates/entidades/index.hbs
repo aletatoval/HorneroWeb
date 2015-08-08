@@ -1,0 +1,57 @@
+{{view "barraAcciones"}}
+<div class="table-responsive col m12 hide-on-med-and-down">
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>{{view "tituloColumna" nombre="nombre"}}</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each entidad in model}}
+        {{#view "filaTabla" modelo=entidad}}
+        {{#if view.editar}}
+            <td>
+              <div class="input-field">
+                {{input valueBinding="entidad.nombre" type="text" placeholder="nuevo entidad" required="true"}}
+              </div>
+            </td>
+            <td class="right-align">
+              <button class="btn btn-xs white black-text" {{action "cancelar" target="view"}}>Cancelar <i class="icon icon-cancel"></i></button>
+              <button class="btn btn-xs teal" {{action "guardar" target="view"}}>Guardar <i class="icon icon-check"></i></button>
+            </td>
+          {{else}}
+            <td>{{entidad.nombre}}</td>
+            <td class="right-align">
+                {{#if entidad.esActivo}}
+                {{#link-to "entidad.modulos" entidad class="btn btn-xs teal"  title="Asignar módulos"}} <i class="fa fa-fw fa-stack-overflow"></i> {{/link-to}}
+                  <button class="btn btn-xs teal tooltipped" data-position="bottom" data-delay="25" data-tooltip="Editar" {{action "editar" target="view"}}>
+                    <i class="icon icon-pencil"></i>
+                  </button>
+                  <button class="btn btn-xs teal tooltipped" data-position="bottom" data-delay="25" data-tooltip="Desactivar"{{action 'desactivar' target='view'}}>
+                    <i class="icon icon-cancel"></i>
+                  </button>
+                {{else}}
+                  <button class="btn btn-xs teal tooltipped" data-position="bottom" data-delay="25" data-tooltip="Activar"{{action 'activar' target='view'}}>
+                    <i class="icon icon-check"></i>
+                  </button>
+                {{/if}}
+            </td>
+          {{/if}}
+        {{/view}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div class="row show-xs show-sm hide-on-large-only">
+  {{#each entidad in model}}
+    <div class="col s12 m4">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3>{{#link-to "entidad" entidad}} {{entidad.nombre}} {{/link-to}}</h3>
+        </div>
+          
+      </div>
+    </div>
+  {{/each}}
+</div>

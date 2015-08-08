@@ -1,0 +1,18 @@
+<form role="form" class="form-inline ocultable right">
+  <fieldset {{bind-attr class="buscarSimple:hide"}}>
+    <div class="input-field">
+      <label class="control-label">Nombre</label>
+        {{input valueBinding=camposFiltro.nombre class="form-control" type="text"}}  
+    </div>
+    <div class="input-field">
+      <label class="control-label">Alias</label>
+        {{input valueBinding=camposFiltro.alias class="form-control" type="text"}}  
+    </div>
+    <div class="input-field">
+      <label class="control-label">Email</label>
+        {{input valueBinding=camposFiltro.email class="form-control" type="email"}}  
+    </div>
+    <a class="btn white black-text" {{action "filtrar"}}>Filtrar</a>
+    <a class="btn white black-text" {{action "cancelarFiltro"}}>Cancelar</a>
+  </fieldset>
+</form>

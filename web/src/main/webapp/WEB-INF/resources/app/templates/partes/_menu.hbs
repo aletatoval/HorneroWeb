@@ -1,0 +1,93 @@
+<ul class="sidebar-nav">
+  <li> {{#link-to "index"}}
+    <i class="fa fa-apple"></i> Tangerine
+    {{/link-to}}
+  </li>
+  <li id="notificaciones" style="display:none">
+    <div class="row">
+      <div class="col s6 text-center">
+        <i class="fa fa-envelope"></i><span class="badge">4</span>
+        <p>mensajes</p>
+      </div>
+      <div class="col s6 text-center">
+        <i class="fa fa-bell"></i><span class="badge">5</span>
+        <p>notificaciones</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    {{#link-to 'usuarios'}}
+    <i class="fa fa-users"></i>
+    {{tag 'usuarios'}}
+    {{/link-to}}
+  </li>
+  <li class="menu open">
+    <a class="menu-toggle" href="JavaScript:void(0)">
+      <i class="fa fa-cogs"></i>{{tag 'configuracion'}}
+      <i class="fa fa-angle-down right"></i>
+    </a>
+    <ul class="submenu">
+      <li>
+        {{#link-to 'empresas'}}
+          <i class="fa fa-building"></i>Empresas
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'roles'}}
+          <i class="fa fa-laptop"></i>Roles
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'permisos'}}
+          <i class="fa fa-book"></i>Permisos
+        {{/link-to}}
+      </li>
+    </ul>
+  </li>
+  <li class="menu open">
+    <a class="menu-toggle" href="JavaScript:void(0)">
+      <i class="fa fa-book"></i>{{tag 'documentacion'}}
+      <i class="fa fa-angle-down right"></i>
+    </a>
+    <ul class="submenu">
+      <li>
+        {{#link-to 'documentacion.trello'}}
+          <i class="fa fa-star"></i>Trello
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'documentacion.frontend'}}
+          <i class="fa fa-laptop"></i>Frontend
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'documentacion.backend'}}
+          <i class="fa fa-cogs"></i>Backend
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'documentacion.diccionario'}}
+          <i class="fa fa-book"></i>Diccionario
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'documentacion.formularios'}}
+          <i class="fa fa-list"></i>Formularios
+        {{/link-to}}
+      </li>
+    </ul>
+  </li>
+
+  <li class="">
+    {{#link-to 'estilos'}}
+    <i class="fa fa-laptop"></i>
+    {{tag 'estilos'}}
+    {{/link-to}}
+  </li>  
+  <li class="">
+    <a href="/tangerineapp/logout">
+    <i class="fa fa-power-off"></i>
+    Salir
+    </a>
+  </li>
+</ul>

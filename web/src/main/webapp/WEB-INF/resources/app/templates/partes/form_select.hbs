@@ -1,0 +1,11 @@
+<select>
+	{{#unless seleccionado}}
+  	<option value="" disabled selected>{{view.placeholder}}</option>
+  {{/unless}}
+
+  {{#each opcion in view.opciones}}
+  	<option {{bind-attr value=opcion.id}}>{{opcion.nombre}}</option>
+  {{/each}}
+
+</select>
+<label>{{view.label}}</label>

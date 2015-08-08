@@ -1,0 +1,23 @@
+{{view "barraAcciones"}}
+<div class="table-responsive col m12 hide-on-med-and-down">
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>{{view "tituloColumna" nombre="nombre"}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each grupo in model}}
+        {{#view "filaTabla" modelo=grupo}}
+          <td>{{grupo.nombre}}</td>
+          <td class="right-align">
+            {{#link-to "grupo" grupo class="btn btn-xs teal"  title="Abrir"}} <i class="icon icon-eye"></i> {{/link-to}}
+            {{#link-to "grupo.edit" grupo class="btn btn-xs teal"  title="Editar"}} <i class="icon icon-pencil"></i> {{/link-to}}
+
+          </td>
+        {{/view}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>

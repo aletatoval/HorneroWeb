@@ -1,0 +1,6 @@
+	<!-- Lista de opciones del ComboBox -->
+	{{#each opcion in view.opciones}}
+	<!-- li de cada opción -->
+		{{view view.opcion nombre=opcion.nombre value=opcion.id}}
+		
+	{{/each}}

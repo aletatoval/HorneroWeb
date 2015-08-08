@@ -1,0 +1,118 @@
+{{view "barraAcciones"}}
+<form role="form" class="col s12">
+  <div class="row">
+    {{#view "formGroup" campo="nombre" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "nombre"}}</label>
+    {{view "inputValidable" valueBinding="nombre" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.nombre}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    {{#view "formGroup" campo="alias" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "alias"}}</label>
+    {{view "inputValidable" valueBinding="alias" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.alias}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    {{#view "formGroup" campo="descripcion" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "descripcion"}}</label>
+    {{view "inputValidable" valueBinding="descripcion" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.descripcion}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    {{#view "formGroup" campo="email" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "email"}}</label>
+    {{view "inputValidable" valueBinding="email" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.email}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    {{#view "formGroup" campo="telefono" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "telefono"}}</label>
+    {{view "inputValidable" valueBinding="telefono" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.telefono}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    {{#view "formGroup" campo="direccion" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "direccion"}}</label>
+    {{view "inputValidable" valueBinding="direccion" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.direccion}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    {{#view "formGroup" campo="ruc" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "ruc"}}</label>
+    {{view "inputValidable" valueBinding="ruc" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.ruc}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <!-- Mapa -->
+  <div class="row">
+    {{google-maps}}
+  </div>
+  <h3>{{tag "Contacto de Soporte"}}</h3>
+  <div class="row">
+    {{#view "formGroup" campo="soporteNombre" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "soporteNombre"}}</label>
+    {{view "inputValidable" valueBinding="soporteNombre" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.soporteNombre}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    {{#view "formGroup" campo="soporteTelefono" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "soporteTelefono"}}</label>
+    {{view "inputValidable" valueBinding="soporteTelefono" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.soporteTelefono}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="row">
+    {{#view "formGroup" campo="soporteEmail" ancho="6"}}
+    <label {{bind-attr class="view.active"}}>{{tag "soporteEmail"}}</label>
+    {{view "inputValidable" valueBinding="soporteEmail" class="form-control" required="true"}}
+    {{/view}}
+    <div class="col m6">
+      {{#each error in errors.soporteEmail}}
+      {{error.message}}
+      {{/each}}
+    </div>
+  </div>
+</form>

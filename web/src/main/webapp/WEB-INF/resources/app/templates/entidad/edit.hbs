@@ -1,0 +1,56 @@
+{{view "barraAcciones"}}
+{{#view "formulario"}}
+  <div class="datos col m10">
+    {{#view "formGroup" campo="nombre"}}
+      <label>{{tag "nombre"}}</label>
+      <div class="col m7">
+        {{view "inputValidable" valueBinding="nombre" required="true" }}
+      </div>
+      <div class="col m3 form-error">
+        {{#each error in errors.nombre}}
+          {{error.message}}
+        {{/each}}
+      </div>
+    {{/view}}
+  </div>
+  <div class="datos col m10">
+    {{#view "formGroup" campo="urlEntrada"}}
+      <label>{{tag "urlEntrada"}}</label>
+      <div class="col m7">
+        {{view "inputValidable" valueBinding="urlEntrada" required="true"}}
+      </div>
+      <div class="col m3 form-error">
+        {{#each error in errors.urlEntrada}}
+          {{error.message}}
+        {{/each}}
+      </div>
+    {{/view}}
+  </div>
+  <div class="datos col m10">
+    {{#view "formGroup" campo="urlSalida"}}
+      <label>{{tag "urlSalida"}}</label>
+      <div class="col m7">
+        {{view "inputValidable" valueBinding="urlSalida" required="true"}}
+      </div>
+      <div class="col m3 form-error">
+        {{#each error in errors.urlSalida}}
+          {{error.message}}
+        {{/each}}
+      </div>
+    {{/view}}
+  </div>
+  <div class="datos col m10">
+    {{#view "formGroup" campo="urlExtra"}}
+      <label>{{tag "urlExtra"}}</label>
+      <div class="col m7">
+        {{view "inputValidable" valueBinding="urlExtra" required="true"}}
+      </div>
+      <div class="col m3 form-error">
+        {{#each error in errors.urlExtra}}
+          {{error.message}}
+        {{/each}}
+      </div>
+    {{/view}}
+  </div>
+
+{{/view}}

@@ -1,0 +1,44 @@
+<div class="tarjetero row">
+	{{#each usuario in controller}}
+		<div class="col m3">
+      <div class="panel tarjeta">
+        {{#link-to 'usuarios.mostrar' usuario}}
+          <div class="panel-heading h4">{{usuario.nombre}}
+            <span class="label right">{{usuario.etiqueta}}</span>
+          </div>
+          <div class="panel-body">
+            <ul class="list-unstyled">
+              {{#if usuario.empresa.nombre}}
+                <li>
+                  <span class="fa-stack fa-fw">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-building fa-stack-1x"></i>
+                  </span>
+                  {{usuario.empresa.nombre}}
+                </li>
+              {{/if}}
+              {{#if usuario.email}}
+                <li>
+                  <span class="fa-stack fa-fw">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x"></i>
+                  </span>
+                  {{usuario.email}}
+                </li>
+              {{/if}}
+              {{#if usuario.telefono}}
+                <li>
+                  <span class="fa-stack fa-fw">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-phone fa-stack-1x"></i>
+                  </span>
+                  {{usuario.telefono}}
+                </li>
+              {{/if}}
+            </ul> 
+          </div>
+        {{/link-to}}
+      </div>
+    </div>
+	{{/each}}
+</div>

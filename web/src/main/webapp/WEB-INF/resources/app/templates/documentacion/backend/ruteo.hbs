@@ -1,0 +1,87 @@
+<h3>Ruteo de servicios</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Recursos</th>
+            <th>Método</th>
+            <th>Formato de <em>URI</em></th>
+            <th>Acción en el <em>resource</em></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="5">cosas</td>
+            <td>GET</td>
+            <td>/cosas(.:format)</td>
+            <td>getCosas()</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <pre>GET /cosas?cantidad=10&amp;pagina=1&amp;indice=nombre&amp;orden=0&amp;filtro=arco</pre>
+                <ul>
+                    <li>cantidad: es la cantidad de cantidad por página, es constante por sesión dependiendo de la vista, ej. en un teléfono cantidad=5, pero en un monitor de de 22 pulgadas cantidad=20 (requerido solo para listado paginado).</li>
+                    <li>pagina: es el nro. de página (requerido solo para listado paginado).</li>
+                    <li>indice: es el atributo que se utilizará como criterio de ordenación.</li>
+                    <li>orden:
+                        <ul>
+                            <li><strong>0</strong>: Ascendente.</li>
+                            <li><strong>1</strong>: Descendente.</li>
+                        </ul>
+                    </li>
+                    <li>filtro: es la clave de búsqueda (requerido solo para filros de búsqueda). Para filtros simples se envía una palabra única, y para filtros avanzados, se envía un JSON convertido a String, con todos los campos y valores que se usarán como filtro.<br>Ejemplos:
+                        <ul>
+                            <li>
+                                <strong>Filtro simple:</strong> 
+                                <pre>filtro=arco</pre>
+                            </li>
+                            <li>
+                                <strong>Filtro avanzado:</strong> 
+                                <pre>filtro={nombre:"juan",apellido:"acosta"}</pre>
+                            </li>
+                            <li>
+                                <strong>Filtro avanzado tras aplicar encodeURI:</strong> 
+                                <pre>filtro=%7Bnombre:%22juan%22,apellido:%22acosta%22%7D</pre>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/cosas(.:format)</td>
+            <td>addCosa()</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/cosas/:accion</td>
+            <td>Acciones de descarga, por ejemplo "plantilla", "exportar", etc.</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/cosas/:accion</td>
+            <td>Acciones de carga, por ejemplo "importar".</td>
+        </tr>
+        <tr>
+            <td rowspan="4">cosa</td>
+            <td>GET</td>
+            <td>/cosas/:id(.:format)</td>
+            <td>getCosa()</td>
+        </tr>
+        <tr>
+            <td>PATCH</td>
+            <td>/cosas/:id(.:format)</td>
+            <td>updateCosa()</td>
+        </tr>
+        <tr>
+            <td>PUT</td>
+            <td>/cosas/:id(.:format)</td>
+            <td>updateCosa()</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>/cosas/:id(.:format)</td>
+            <td>cosas#destroy</td>
+        </tr>
+    </tbody>
+</table>

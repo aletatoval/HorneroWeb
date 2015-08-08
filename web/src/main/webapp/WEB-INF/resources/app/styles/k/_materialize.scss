@@ -1,0 +1,14 @@
+// Override de estilos de materialize
+
+.dropdown-content {
+  top: auto !important;
+  min-width: 200px !important;
+  li {
+    color: #444;
+  }
+}
+.input-field {
+  input:disabled {
+    color: #444;
+  }
+}

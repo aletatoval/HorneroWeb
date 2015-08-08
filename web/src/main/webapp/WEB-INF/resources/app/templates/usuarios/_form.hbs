@@ -1,0 +1,60 @@
+{{view "barraAcciones"}}
+<form role="form" class="form-horizontal">
+  <div class="datos col m10">
+    <div class="input-field">
+      <label>{{tag "nombre"}}</label>
+      
+      {{view Ember.TextField valueBinding="nombre" class="form-control"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "alias"}}</label>
+      
+      {{view Ember.TextField valueBinding="alias" class="form-control"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "documento"}}</label>
+      
+      {{view Ember.TextField valueBinding="documento" class="form-control"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "clave"}}</label>
+      
+      {{view Ember.TextField valueBinding="clave" type="password" class="form-control"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "telefono"}}</label>
+      
+      {{view Ember.TextField valueBinding="telefono" class="form-control"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "email"}}</label>
+      
+      {{view Ember.TextField valueBinding="email" class="form-control" type="email"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "imei"}}</label>
+      
+      {{view Ember.TextField valueBinding="imei" class="form-control"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "imsi"}}</label>
+      
+      {{view Ember.TextField valueBinding="imsi" class="form-control"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "empresa"}}</label>
+      
+      {{view "combobox" recurso="Empresa"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "horaInicioMuestra"}}</label>
+      
+      {{view Ember.TextField valueBinding="horaInicioMuestra" class="form-control"}}
+    </div>
+    <div class="input-field">
+      <label>{{tag "horaFinMuestra"}}</label>
+      
+      {{view Ember.TextField valueBinding="horaFinMuestra" class="form-control"}}
+    </div>
+  </div>
+</form>

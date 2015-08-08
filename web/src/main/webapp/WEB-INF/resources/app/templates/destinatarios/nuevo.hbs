@@ -1,0 +1,18 @@
+{{view "barraAcciones"}}
+{{#view "formulario"}}
+<div class="row">
+  {{#view "formGroup" ancho="6" campo="nombre"}}
+  <label>{{tag "nombre"}}</label>
+    {{view "inputValidable" valueBinding="nombre" class="form-control" required="true"}}
+  {{/view}}
+</div>
+<div class="row">
+  {{#view "formGroup" ancho="6" campo="destinatario"}}
+  <label>{{tag "destinatario"}}</label>
+    {{view "inputValidable" type="number" valueBinding="destinatario" required="true"}}
+  {{/view}}
+</div>
+<div class="row">
+  {{view "formSelect" ancho="6" opciones=lista_empresas selected="empresa_elegida" placeholder="Seleccione una empresa de la lista" label="Empresa"}}
+</div>
+{{/view}}

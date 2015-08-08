@@ -1,0 +1,30 @@
+@media #{$medium-and-up} {
+  .container {
+    width: 90%;
+  }
+}
+
+$gris_medio: #999;
+
+
+[class^="icon-"]::before, [class*=" icon-"]::before {
+  vertical-align: sub;
+}
+
+.alto500 {
+  height: 500px !important;
+}
+
+.disabled {
+  color: $gris_medio !important;
+}
+
+ul.pager {
+  li {
+    display: inline;
+  }
+}
+.etiqueta {
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}

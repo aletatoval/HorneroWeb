@@ -1,0 +1,19 @@
+{{view "barraAcciones"}}
+
+<form role="form" class="form-horizontal">
+  <fieldset>
+    {{#each buffer}}
+
+    <div class="input-field">
+      <span class="hide">{{this}}</span>
+      <label class="col m2 control-label">{{key}}</label>
+      <div class="col m10">
+        {{view Ember.TextField valueBinding="value" class="form-control"}}
+      </div>
+    </div>
+    {{/each}}
+  </fieldset>
+</form>
+
+<button {{action 'save'}}>Update</button>
+

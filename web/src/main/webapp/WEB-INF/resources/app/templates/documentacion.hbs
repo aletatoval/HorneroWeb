@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h1>Documentación <small>Guía para el desarrollador</small></h1><hr>
+
+    <div class="col m3">
+        <ul class="nav">
+          <li>{{#link-to 'documentacion'}}{{tag 'Pautas generales'}}{{/link-to}}</li>
+          <li>{{#link-to 'documentacion.trello'}}{{tag 'trello'}}{{/link-to}}</li>
+          <li>{{#link-to 'documentacion.frontend'}}{{tag 'frontend'}}{{/link-to}}</li>
+          <li>{{#link-to 'documentacion.backend'}}{{tag 'backend'}}{{/link-to}}</li>
+          <li>{{#link-to 'documentacion.diccionario'}}{{tag 'diccionario'}}{{/link-to}}</li>
+          <li>{{#link-to 'documentacion.formularios'}}{{tag 'formularios'}}{{/link-to}}</li>
+        </ul>
+    </div>
+
+    <div class="col m9">
+        {{outlet}}
+    </div>
+
+</div>

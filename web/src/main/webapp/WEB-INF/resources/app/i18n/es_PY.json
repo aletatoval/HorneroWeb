@@ -1,0 +1,75 @@
+{
+    "konecta": "Konecta",
+    "rastreo": "Rastreo",
+    "index": "Inicio",
+    "loading": " ",
+    "error": "Error",
+    "Detalle": "Detalle",
+    "nuevo": "Agregar",
+    "mostrar": "Ver",
+    "modificado": "modificado",
+    "estilos": "Estilos",
+    "documentacion": "Documentación",
+    "Guía para el desarrollador": "Guía para el desarrollador",
+    "Pautas generales": "Pautas generales",
+    "trello": "Trello",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "formato": "Formato de servicios",
+    "formularios": "Formularios",
+    "ruteo": "Ruteo de servicios",
+    "respuestas": "Formato de respuestas",
+    "diccionario": "Diccionario",
+    "usuario": "Usuario",
+    "usuarios": "Usuarios",
+    "empresas": "Empresas",
+    "nombre": "Nombre",
+    "descripcion": "Descripción",
+    "alias": "Alias",
+    "email": "Email",
+    "telefono": "Teléfono",
+    "direccion": "Dirección",
+    "ruc" : "RUC",
+    "latitud": "Latitud",
+    "longitud": "Longitud",
+    "Contacto de Soporte": "Contacto de Soporte",
+    "imei": "IMEI",
+    "imsi": "IMSI",
+    "rol": "Rol",
+    "rol.nombre": "Rol",
+    "empresa": "Empresa",
+    "roles": "Roles",
+    "empresa.id": "Empresa #",
+    "empresa.nombre": "Empresa",
+    "documento": "Documento",
+    "clave": "Contraseña",
+    "horaInicioMuestra": "Inicio de muestreo",
+    "horaFinMuestra": "Fin de muestreo",
+    "en": "en",
+    "session": "Acceso",
+    "login": "Ingresar",
+    "tangerine": "Tangerine",
+    "mensajes": {
+        "éxito": {
+                "0": "Mensaje de éxito por defecto",
+                "1": "Otro mensaje de éxito."
+            },
+        "notificación": {
+                "0": "Mensaje de notificación por defecto",
+                "1": "Otro mensaje de notificación."
+            },
+        "alerta": {
+                "0": "Mensaje de alerta por defecto",
+                "1": "Otro mensaje de alerta."
+            },
+        "error": {
+                "0": "Mensaje de error por defecto",
+                "1": "Otro mensaje de error."
+            }
+    },
+    "activo": "Activo",
+    "tiempoMuestra": "Int. de Muestreo",
+    "id": "Id",
+    "fechaCreacion": "Fecha de creación"
+
+}

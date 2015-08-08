@@ -1,0 +1,49 @@
+.cabecera-object-index {
+	background-color: $verde;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15) inset;
+	border-radius: 4px;
+  color: #fff;
+  padding: 0 20px 20px;
+  margin-bottom: 20px;
+	h2 {
+		text-shadow: 2px 2px 0 $verde, 5px 3px 0 rgba(0, 0, 0, 0.15);
+		font-size: 3em;
+	}
+	h4{
+
+	}
+	small {
+		color: #fff;
+	}
+	p {
+		display: inline;
+		margin: 10px;
+		font-size: 1.2em;
+	}
+	.info{
+		padding: 10px;
+	}
+	i {
+		font-size: 1.4em;
+	}
+}
+
+// Estilo para mostrar cursor manito en vistas con acción
+
+.ember-accion {
+	cursor: pointer;
+}
+
+
+.form-filtros {
+	padding: 20px 10px;
+	margin-top: -40px;
+}
+
+.z-depth-1-inset {
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16) inset, 0 2px 10px 0 rgba(0, 0, 0, 0.12) inset;
+}
+
+.pagination {
+	display: inline-block;
+}

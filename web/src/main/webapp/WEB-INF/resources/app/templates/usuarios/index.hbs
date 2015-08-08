@@ -1,0 +1,36 @@
+{{view "barraAcciones"}}
+{{view "filtros" modelo="Usuario"}}
+<div class="table-responsive col m12">
+  <table class="striped">
+    <thead>
+      <tr> <!-- Crear containerView para la cabecera, para tener el array de 'tituloColumna's -->
+        <th>{{view "tituloColumna" nombre="nombre"}}</th>
+        <th>{{view "tituloColumna" nombre="email"}}</th>
+        <th>{{view "tituloColumna" nombre="telefono"}}</th>
+        <th>{{tag "empresa"}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each usuario in model}}
+        {{#view "filaTabla" modelo=usuario}}
+          <td>{{usuario.nombre}}</td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.telefono}}</td>
+          <td>{{usuario.empresa.nombre}}</td>
+          <td>
+            {{#if usuario.esActivo}}
+              {{#link-to "usuario" usuario class="btn teal btn-xs"}} <i class="icon icon-eye tooltipped" data-position="bottom" data-delay="25" data-tooltip="Ver"></i> {{/link-to}}
+              {{#link-to "usuario.edit" usuario class="btn teal btn-xs"}} <i class="icon icon-pencil tooltipped" data-position="bottom" data-delay="25" data-tooltip="Editar"></i> {{/link-to}}
+              <button class="btn teal btn-xs tooltipped" data-position="bottom" data-delay="25" data-tooltip="Desactivar"{{action 'desactivar' target='view'}}>
+                  <i class="icon icon-cancel"></i></button>
+            {{else}}
+              <button class="btn teal btn-xs tooltipped" data-position="bottom" data-delay="25" data-tooltip="Activar"{{action 'activar' target='view'}}>
+                  <i class="icon icon-cancel"></i></button>
+            {{/if}}
+          </td>
+        {{/view}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>

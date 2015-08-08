@@ -1,0 +1,120 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                    http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<global-method-security pre-post-annotations="enabled"
+		proxy-target-class="true" />
+
+	<http use-expressions="true" auto-config="true">
+
+		<intercept-url pattern="/" access="isAuthenticated()" />
+
+		<intercept-url pattern="/resources/styles/*/*" access="permitAll" />
+		<intercept-url pattern="/resources/styles/*" access="permitAll" />
+		<intercept-url pattern="/resources/i18n/*" access="isAuthenticated()" />
+		<intercept-url pattern="/resources/scripts/*" access="isAuthenticated()" />
+		<intercept-url pattern="/resources/images/*" access="permitAll" />
+		<intercept-url pattern="/resources/assets/**" access="isAuthenticated()" />
+		<intercept-url pattern="/assets/**" access="isAuthenticated()" />
+
+		<intercept-url pattern="/login*" access="permitAll" />
+		<intercept-url pattern="/login/fallo" access="permitAll" />
+		<intercept-url pattern="/denegado" access="isAuthenticated()" />
+		<intercept-url pattern="/logout" access="isAuthenticated()" />
+
+		<intercept-url pattern="/home" access="isAuthenticated()" />
+
+		<intercept-url pattern="/perfil" access="isAuthenticated()" />
+		<intercept-url pattern="/modificarClave" access="isAuthenticated()" />
+
+		<intercept-url pattern="/usuarios" access="isAuthenticated()" />
+		<intercept-url pattern="/usuarios/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/usuarios/*" access="isAuthenticated()" />
+		<intercept-url pattern="/usuarios*" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/empresas" access="isAuthenticated()" />
+		<intercept-url pattern="/empresas/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/empresas/*" access="isAuthenticated()" />
+		<intercept-url pattern="/empresas*" access="isAuthenticated()" />
+		<intercept-url pattern="/empresas/*/roles" access="isAuthenticated()" />
+		<intercept-url pattern="/empresas/*/rol" access="isAuthenticated()" />
+		<intercept-url pattern="/empresa/roles/*/asignar" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/modulos" access="isAuthenticated()" />
+		<intercept-url pattern="/modulos/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/modulos/*" access="isAuthenticated()" />
+		<intercept-url pattern="/modulos*" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/roles" access="isAuthenticated()" />
+		<intercept-url pattern="/roles/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/roles/*" access="isAuthenticated()" />
+		<intercept-url pattern="/roles*" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/destinatarios" access="isAuthenticated()" />
+		<intercept-url pattern="/destinatarios/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/destinatarios/*" access="isAuthenticated()" />
+		<intercept-url pattern="/destinatarios*" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/grupos" access="isAuthenticated()" />
+		<intercept-url pattern="/grupos/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/grupos/*" access="isAuthenticated()" />
+		<intercept-url pattern="/destinatarios*" access="isAuthenticated()" />
+		<intercept-url pattern="/rolespermisos" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/grupos" access="isAuthenticated()" />
+		<intercept-url pattern="/grupos/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/grupos/*" access="isAuthenticated()" />
+		<intercept-url pattern="/grupos*" access="isAuthenticated()" />
+		<!-- Permiso para los servicios de la aplicación movil  -->
+		
+		<intercept-url pattern="/movil/autenticar" access="permitAll" />
+		<intercept-url pattern="/movil/descargarPermisos" access="permitAll" />
+		<intercept-url pattern="/movil/guardarLocalizacion" access="permitAll" />
+
+		<intercept-url pattern="/localizaciones" access="isAuthenticated()" />
+		<intercept-url pattern="/localizaciones/ubicacion"
+			access="isAuthenticated()" />
+		<intercept-url pattern="/localizaciones/rutadeldia"
+			access="isAuthenticated()" />
+
+		<intercept-url pattern="/Instaladores/denyApp" access="permitAll" />
+		<intercept-url pattern="/Solicitudes/agregar/*" access="hasRole('Solicitud.Agregar')" />
+		
+		<intercept-url pattern="/permisos" access="isAuthenticated()" />
+		<intercept-url pattern="/permisos/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/permisos/*" access="isAuthenticated()" />
+		<intercept-url pattern="/permisos*" access="isAuthenticated()" />
+		
+
+		<intercept-url pattern="/entidades" access="isAuthenticated()" />
+		<intercept-url pattern="/entidades/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/entidades/*" access="isAuthenticated()" />
+		<intercept-url pattern="/entidades*" access="isAuthenticated()" />
+
+		<intercept-url pattern="/modulos*" access="isAuthenticated()" />
+
+		<form-login login-page="/login" authentication-failure-url="/login/fallo"
+			default-target-url="/" always-use-default-target="true" />
+
+		<access-denied-handler error-page="/denegado" />
+
+		<logout invalidate-session="true" logout-success-url="/login"
+			logout-url="/logout" />
+
+		<intercept-url pattern="/**" access="denyAll" />
+
+	</http>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="MensajeriaUserDetailService">
+			<password-encoder ref="passwordEncoder">
+				<salt-source user-property="username" />
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+
+</beans:beans> 

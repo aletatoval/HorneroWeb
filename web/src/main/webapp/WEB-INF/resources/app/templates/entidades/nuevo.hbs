@@ -1,0 +1,58 @@
+{{view "barraAcciones"}}
+{{#view "formulario"}}
+		<fieldset {{bind-attr disabled=mostrando}}>
+			<div class="datos col m10">
+				{{#view "formGroup"}}
+					<label>{{tag "nombre"}}</label>
+			    <div class="col m7">
+			    	{{view Ember.TextField valueBinding="nombre" class="form-control"}}
+			    </div>
+			 	 <div class="col m3 form-error">
+		          {{#each error in errors.nombre}}
+		            {{error.message}}
+		          {{/each}}
+		        </div>
+    			{{/view}}				
+			  
+		  </div>
+		  <div class="datos col m10">
+		    {{#view "formGroup"}}
+		      <label>{{tag "urlEntrada"}}</label>
+		      <div class="col m7">
+		        {{view "inputValidable" valueBinding="urlEntrada" required="true"}}
+		      </div>
+		      <div class="col m3 form-error">
+		          {{#each error in errors.urlEntrada}}
+		            {{error.message}}
+		          {{/each}}
+	        	</div>
+		    {{/view}}
+		  </div>
+		  <div class="datos col m10">
+		    {{#view "formGroup"}}
+		      <label>{{tag "urlSalida"}}</label>
+		      <div class="col m7">
+		        {{view "inputValidable" valueBinding="urlSalida" required="true"}}
+		      </div>
+		      <div class="col m3 form-error">
+		          {{#each error in errors.urlSalida}}
+		            {{error.message}}
+		          {{/each}}
+	        	</div>
+		    {{/view}}
+		  </div>
+		  <div class="datos col m10">
+		    {{#view "formGroup"}}
+		      <label>{{tag "urlExtra"}}</label>
+		      <div class="col m7">
+		        {{view "inputValidable" valueBinding="urlExtra" required="true"}}
+		      </div>
+		      <div class="col m3 form-error">
+		          {{#each error in errors.urlExtra}}
+		            {{error.message}}
+		          {{/each}}
+	        	</div>
+		    {{/view}}
+		  </div>
+		</fieldset>
+{{/view}}

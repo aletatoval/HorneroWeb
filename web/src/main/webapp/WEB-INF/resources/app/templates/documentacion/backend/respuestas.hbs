@@ -1,0 +1,25 @@
+<h3>Formato de respuestas</h3>
+<p>Todas las respuestas de los servicios, independientemente de su función o naturaleza, deberán tener el siguiente formato:</p>
+<ol>
+    <li>Los servicios de listar contarán con 3 campos:
+        <ul>
+            <li><strong>lista</strong>: Requerido para servicios de listar, cuando culminan correctamente. No es utilizado en otros servicios como los de acciones u obtener.</li>
+            <li><strong>_tipo</strong>: Es opcional y sus opciones son:
+                <ul>
+                    <li class="bg-success"><strong>Sin campo _tipo</strong>: Éxito</li>
+                    <li class="bg-info"><strong>"1"</strong>: Notificación</li>
+                    <li class="bg-warning"><strong>"2"</strong>: Alerta</li>
+                    <li class="bg-danger"><strong>"3"</strong>: Error</li>
+                </ul>
+            </li>
+            <li><strong>_mensaje</strong>: Es opcional y para cada opción recibida en _tipo, hay un mensaje por defecto asociado (la opción 0 del diccionario).</li>
+        </ul>
+    </li>
+    <li>Si se trata de una acción la respuesta será un json vacío o con los campos opcionales <em>_mensaje</em> y/o <em>_tipo</em> según sean necesarios.</li>
+    <li>Si se trata de un obtener se recibirá el dato, y junto a los campos mismos del objeto se podrán recibir los opcionales, por ejemplo:
+        <pre>{{ respuestaObtener }}</pre>
+    </li>
+    <li>Si se trata de un listar se recibirá la lista en un campo <em>lista</em>, también se podrán recibir los opcionales, por ejemplo:
+        <pre>{{ respuestaLista }}</pre>
+    </li>
+</ol>

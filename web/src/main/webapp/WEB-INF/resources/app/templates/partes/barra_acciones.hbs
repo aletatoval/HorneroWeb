@@ -1,0 +1,62 @@
+<div class="row barra-acciones">
+  <div class="col m6">
+    <ul class="nav-ruta">
+      {{#each r in view.path}}
+      <li class="li-ruta">
+        {{#if r.ruta}}
+          {{#if r.modelo}}
+            {{#link-to r.ruta r.modelo}}
+              {{#if titulo}}
+                {{titulo}}
+              {{else}}
+                {{r.modulo}}
+              {{/if}}
+            {{/link-to}}
+          {{else}}
+            {{#link-to r.ruta}} {{tag r.modulo}} {{/link-to}}
+          {{/if}}
+          <i class="icon icon-right-open green-text"></i>
+        {{else}}
+          <a class="disabled">{{r.modulo}}</a>
+        {{/if}}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div id="botones" class="col m6 right-align">
+    {{#if listado}}
+      {{#unless sinBusqueda}}
+        {{view "botonBuscar" title="Buscar"}}
+      {{/unless}}
+      <button type="button" class="btn orange darken-4" title="Agregar" {{action "nuevo"}}><i class="fa  fa-plus"></i></button>
+      {{#view "botonRecargar" title="Recargar datos"}}
+          <i {{bind-attr class=":fa :fa-repeat view.active:fa-spin"}}></i>
+      {{/view}}
+    {{/if}}
+    {{#if mostrando}}
+      <button type="button" class="btn teal darken-2" title="Atrás" onclick="javascript:window.history.back()">
+        <i class="fa  fa-arrow-left"></i>
+      </button>
+      <button type="button" class="btn orange darken-4" title="Editar" {{action "editar"}}><i class="fa  fa-pencil"></i></button>
+      <button type="button" class="btn red accent-4" title="Desactivar" {{action "eliminar"}}><i class="fa  fa-trash-o"></i></button>
+    {{/if}}
+    {{#if editando}}
+      <button type="button" class="btn orange darken-4" title="Guardar" {{action "save"}}>Guardar <i class="fa fa-fw fa-save"></i></button>
+      <button type="button" class="btn white black-text" title="Descartar cambios" {{action "descartar"}}>Cancelar<i class="fa fa-fw fa-times"></i></button>
+    {{/if}}
+    {{#if wizard}}
+        <button {{bind-attr class=":btn :white :black-text :anterior esPrimero:disabled" disabled="esPrimero"}} {{action "anterior" }}>
+        <i class="fa fa-arrow-left"></i> Anterior
+        </button>
+      {{#if esUltimo}}
+        <button {{bind-attr class=":btn :teal :darken-2 :siguiente "}} {{action "finalizar" }}> Finalizar <i class="fa fa-check"></i>
+        </button>
+      {{else}}
+        <button {{bind-attr class=":btn :btn-info :siguiente "}} {{action "siguiente" }}> Siguiente <i class="fa fa-arrow-right"></i>
+        </button>
+      {{/if}}
+      <button class="btn white red-text" onclick="javascript:window.history.back()">Cancelar <i class="icon icon-cancel"></i></button>
+  {{/if}}
+  </div>
+</div>

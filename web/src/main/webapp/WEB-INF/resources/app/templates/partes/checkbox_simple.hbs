@@ -1,0 +1,6 @@
+<div class="checkbox-simple">
+	 <p {{action "seleccionar" target="view"}}>
+    <input type="checkbox" class="filled-in" {{bind-attr id=view.idInput checked=view.seleccionado}} />
+    <label {{bind-attr for=view.idInput }}>{{view.label}}</label>
+  </p>
+</div>

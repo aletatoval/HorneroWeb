@@ -1,0 +1,41 @@
+{{#view "wizard" pasos=3}}
+	<!-- Indicador de pasos -->
+	<ul class="nav nav-pills nav-justified">
+		{{#view "indicePasoWizard" paso=1}} <a>Empresas</a> {{/view}}
+		{{#view "indicePasoWizard" paso=2}} <a>Módulos</a> {{/view}}
+		{{#view "indicePasoWizard" paso=3}} <a>Entidades</a> {{/view}}
+	</ul>
+	<!-- Pasos -->
+	<!-- Paso 1: lista de empresas -->
+	{{#view "pasoWizard" paso=1 viewName="paso1"}}
+	Paso 1
+	{{/view}}
+	<!-- Paso 2: lista seleccionable de módulos -->
+	{{#view "pasoWizard" paso=2 viewName="paso2"}}
+	Paso 2
+	{{/view}}
+	<!-- Paso 3: lista editable de entidades -->
+	{{#view "pasoWizard" paso=2 viewName="paso3"}}
+	Paso 3
+	{{/view}}
+	<!-- Botones -->
+	<nav>
+		<ul class="pager">
+			<li {{bind-attr disabled=view.esPrimero}}> 
+				<button class="btn white black-text anterior" {{action "anterior" target="view"}}> <i class="fa fa-arrow-left"></i> Anterior 
+				</button>
+			</li>
+			{{#if view.esUltimo}}
+			<li> 
+				<button class="btn orange darken-4 siguiente" {{action "finalizar" target="view"}}> Finalizar <i class="fa fa-check"></i> 
+				</button> 
+			</li> 
+			{{else}} 
+			<li> 
+				<button class="btn teal darken-2 siguiente" {{action "siguiente" target="view"}}> Siguiente <i class="fa fa-arrow-right"></i> 
+				</button> 
+			</li> 
+			{{/if}}
+		</ul>
+	</nav>
+{{/view}}

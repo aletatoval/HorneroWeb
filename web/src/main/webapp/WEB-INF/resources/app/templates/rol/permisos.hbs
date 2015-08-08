@@ -1,0 +1,32 @@
+{{view "barraAcciones"}}
+<!-- Cabecera -->
+
+<div class="row">
+	<table>
+		<thead>
+			<tr>
+				<th>Entidades</th>
+				{{#each permiso in lista_permisos}}
+					<th>{{permiso.nombre}}</th>
+				{{/each}}
+			</tr>
+		</thead>
+		<tbody>
+			{{#each entidad in lista_entidades}}
+				<tr>
+					<td>
+						<input type="checkbox" {{action "marcarTodo" entidad}} >
+						{{entidad.nombre}}
+					</td>
+					{{#each permiso in lista_permisos}}
+						<td>
+							<p>
+								{{view "checkboxSimple" params="2" accion="marcarPermiso" param1=permiso param2=entidad}}
+					    </p>
+						</td>
+					{{/each}}
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>

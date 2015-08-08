@@ -1,0 +1,54 @@
+{{view "barraAcciones"}}
+<!-- Cabecera -->
+<div class="row">
+	<h2 class="teal-text">{{model.nombre}} <small class="grey-text">({{model.alias}})</small></h2>
+	<h4>{{model.descripcion}}</h4>
+	<div class="col m6">
+		<div class="row">
+			<!-- datos -->
+			<div class="input-field col s12">
+				<i class="icon icon-phone prefix"></i>
+				{{input disabled="true" valueBinding=model.telefono}}
+				<label class="active">Teléfono</label>
+			</div>
+			<div class="input-field col s12">
+				<i class="icon icon-information-white prefix"></i>
+				{{input disabled="true" valueBinding=model.ruc}}
+				<label class="active">RUC</label>
+			</div>
+			<div class="input-field col s12">
+				<i class="icon icon-at prefix"></i>
+				{{input disabled="true" valueBinding=model.email}}
+				<label class="active">Correo electrónico</label>
+			</div>
+			<div class="input-field col s12">
+				<i class="icon icon-address prefix"></i>
+				{{input disabled="true" valueBinding=model.direccion}}
+				<label class="active">Dirección</label>
+			</div>
+		</div>
+		<div class="row">
+			<h3>Contacto de soporte</h3>
+			<div class="input-field col s12">
+				<i class="icon icon-user prefix"></i>
+				{{input disabled="true" valueBinding=model.soporteNombre}}
+				<label class="active">Nombre</label>
+			</div>
+			<div class="input-field col s12">
+				<i class="icon icon-phone prefix"></i>
+				{{input disabled="true" valueBinding=model.soporteTelefono}}
+				<label class="active">Teléfono</label>
+			</div>
+			<div class="input-field col s12">
+				<i class="icon icon-at prefix"></i>
+				{{input disabled="true" valueBinding=model.soporteEmail}}
+				<label class="active">Correo electrónico</label>
+			</div>
+		</div>
+	</div>
+	<div class="col m6">
+		<div class="col m12">
+			{{google-maps lat=latitud lng=longitud mensaje=nombre alto=450}}
+		</div>
+	</div>
+</div>

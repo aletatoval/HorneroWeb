@@ -1,0 +1,15 @@
+
+    {{input value=buscarSimpleValor insert-newline="buscarSimple" focus="mostrarBuscarSimple" class="input-busqueda"}}
+    <button class="btn white black-text lupa" type="button" {{action "buscarSimple"}}>
+      <i class="icon icon-search"></i>
+    </button>
+    {{#if view.inputConValor}}
+    <!-- <button class="btn white black-text lupa" type="button" {{action "limpiarInput" target="view"}}>
+      <i class="fa fa-times"></i>
+    </button> -->
+    {{/if}}
+    {{#if hayFiltros}}
+    <button type="button" {{bind-attr class=":btn :white :black-text buscarAvanzadoActivo:z-depth-1-inset"}}{{action "mostrarBuscarAvanzado"}}>
+      <i class="icon icon-down-open"></i>
+    </button>
+    {{/if}}

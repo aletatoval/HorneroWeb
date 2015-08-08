@@ -1,0 +1,18 @@
+{{view "barraAcciones"}}
+<h4>{{titulo}}</h4>
+  <div class="datos col m10">
+    {{#view "formGroup"}}
+      <label>Módulos</label>
+      <div class="col m7">
+        {{#view "listaSeleccionable" viewName="listaSelecionableModulos"}}
+          {{#each modulo in lista_modulos}}
+            {{#view "checkboxLista" item=modulo}}
+              {{modulo.nombre}}
+              <i {{bind-attr class=":right view.icono"}}></i>
+            {{/view}}
+          {{/each}}
+        {{/view}}
+      </div>
+      <div class="col m3">{{view.mensaje}}</div>
+    {{/view}}
+  </div>

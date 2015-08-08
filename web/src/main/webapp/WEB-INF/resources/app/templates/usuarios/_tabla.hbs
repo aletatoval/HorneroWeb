@@ -1,0 +1,28 @@
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>{{tag "nombre"}}</th>
+			<th>{{tag "email"}}</th>
+			<th>{{tag "telefono"}}</th>
+			<th>{{tag "empresa"}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each usuario in controller}}
+		<tr>
+			<td class="text-center">
+				{{#link-to 'usuarios.mostrar' usuario}}
+					<i class="fa fa-list-alt"></i>
+				{{/link-to}}
+			</td>
+			<td>{{usuario.nombre}}</td>
+			<td>{{usuario.email}}</td>
+			<td>{{usuario.telefono}}</td>
+			<td>{{usuario.empresa.nombre}}</td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>
+</div>

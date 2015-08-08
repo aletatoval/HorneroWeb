@@ -1,0 +1,95 @@
+{{view "barraAcciones"}}
+<form role="form" class="form-horizontal">
+  <div class="datos col m12">
+      {{#view "formGroup" campo="nombre"}}
+        <label>{{tag "nombre"}}</label>
+        
+          {{view "inputValidable" valueBinding="nombre" class="form-control" required="true"}}   
+          {{#each error in errors.nombre}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+      {{#view "formGroup" campo="descripcion"}}
+        <label>{{tag "descripcion"}}</label>
+        
+          {{view "inputValidable" valueBinding="descripcion" class="form-control"}}  
+          {{#each error in errors.descripcion}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+      {{#view "formGroup" campo="alias"}}
+        <label>{{tag "alias"}}</label>
+        
+          {{view "inputValidable" valueBinding="alias" class="form-control" required="true"}}
+          {{#each error in errors.alias}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+      {{#view "formGroup" campo="email"}}
+        <label>{{tag "email"}}</label>
+        
+          {{view "inputValidable" valueBinding="email" class="form-control" type="email" required="true"}}
+          {{#each error in errors.email}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+      {{#view "formGroup" campo="telefono"}}
+        <label>{{tag "telefono"}}</label>
+        
+          {{view "inputValidable" valueBinding="telefono" class="form-control" placeholder="Teléfono"}}
+        
+          {{#each error in errors.telefono}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+      {{#view "formGroup" campo="direccion"}}
+        <label>{{tag "direccion"}}</label>
+        
+          {{view "inputValidable" valueBinding="direccion" class="form-control"}}
+        
+          {{#each error in errors.direccion}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+      {{#view "formGroup" campo="ruc"}}
+        <label>{{tag "ruc"}}</label>
+        
+          {{view "inputValidable" valueBinding="ruc" class="form-control" required="true"}}
+        
+          {{#each error in errors.ruc}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+      <div class="row">
+          {{google-maps}}
+      </div>
+      <h3>{{tag "Contacto de Soporte"}}</h3>
+      {{#view "formGroup" campo="soporteNombre"}}
+        <label>{{tag "nombre"}}</label>
+        
+          {{view "inputValidable" valueBinding="soporteNombre" class="form-control"}}
+        
+          {{#each error in errors.soporteNombre}}
+          {{error.message}}
+          {{/each}}
+     {{/view}}
+      {{#view "formGroup" campo="soporteTelefono"}}
+        <label>{{tag "telefono"}}</label>
+        
+          {{view "inputValidable" valueBinding="soporteTelefono" class="form-control"}}
+        
+          {{#each error in errors.soporteTelefono}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+      {{#view "formGroup" campo="soporteEmail"}}
+        <label>{{tag "email"}}</label>
+        
+          {{view "inputValidable" valueBinding="soporteEmail" class="form-control"}}
+        
+          {{#each error in errors.soporteEmail}}
+          {{error.message}}
+          {{/each}}
+      {{/view}}
+  </div>
+</form>
