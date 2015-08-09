@@ -6,7 +6,7 @@
 
 	<persistence-unit name="Mensajeria-PU" transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/MensajeriaDS</jta-data-source>
+		<jta-data-source>java:/HorneroDS</jta-data-source>
 		<properties>
 			<!-- Properties for Hibernate -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />

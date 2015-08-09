@@ -12,12 +12,12 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 
-	<context:component-scan base-package="py.com.mensajeria" />
+	<context:component-scan base-package="py.com.hornero" />
 
 
-	<bean id="MensajeriaUserDetailService" class="py.com.mensajeria.services.MensajeriaUserDetailService" />
+	<bean id="HorneroUserDetailService" class="py.com.hornero.services.HorneroUserDetailService" />
 
-	<bean class="py.com.mensajeria.services.MensajeriaPasswordEncoder"
+	<bean class="py.com.hornero.services.HorneroPasswordEncoder"
 		id="passwordEncoder" p:encodeHashAsBase64="true" />
 
 	<bean id="multipartResolver"

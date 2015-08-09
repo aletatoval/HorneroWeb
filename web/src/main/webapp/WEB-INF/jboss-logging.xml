@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <logging xmlns="urn:jboss:logging:6.0" xmlns:b="urn:jboss:bean-deployer:2.0">
 
-   <define-context name="mensajeriaapp" />
+   <define-context name="horneroapp" />
    
    <periodic-rotating-file-handler
-         file-name="${jboss.server.log.dir}/mensajeriaapp.log"
-         name="MENSAJERIAAPPFILE"
+         file-name="${jboss.server.log.dir}/horneroapp.log"
+         name="HORNEROAPPFILE"
          autoflush="true"
          append="true"
          suffix=".yyyy-MM-dd">  <!-- To roll over at the top of each hour, use ".yyyy-MM-dd-HH" instead -->
@@ -24,7 +24,7 @@
 	<logger category="org.springframework">
       <level name="WARN"/>
       <handlers>
-         <handler-ref name="MENSAJERIAAPPFILE"/>
+         <handler-ref name="HORNEROAPPFILE"/>
       </handlers>
    </logger>
    
@@ -32,15 +32,15 @@
 	<logger category="org.hibernate">
      <level name="INFO" />
      <handlers>
-         <handler-ref name="MENSAJERIAAPPFILE"/>
+         <handler-ref name="HORNEROAPPFILE"/>
       </handlers>
    </logger>
 
    <!--Logueando la categoría principal-->
-   <logger category="mensajeriaapp">
+   <logger category="horneroapp">
       <level name="ALL"/>
       <handlers>
-         <handler-ref name="MENSAJERIAAPPFILE"/>
+         <handler-ref name="HORNEROAPPFILE"/>
       </handlers>
    </logger>
    

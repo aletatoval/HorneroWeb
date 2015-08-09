@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
-	<context-root>/mensajeriaapp</context-root>
+	<context-root>/horneroapp</context-root>
 </jboss-web>
