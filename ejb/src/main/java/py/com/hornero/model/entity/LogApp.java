@@ -11,10 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author Hermann Bottger
- */
 
 @Entity
 public class LogApp implements Serializable {

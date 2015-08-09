@@ -12,10 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Size;
 
-/**
- * @author Hermann Bottger
- * 
- */
 @MappedSuperclass
 public class EntidadBase implements Serializable {
 

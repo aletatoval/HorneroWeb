@@ -10,10 +10,6 @@ import javax.ejb.Local;
 
 import py.com.hornero.model.entity.Usuario;
 
-/**
- *  @author Hermann Bottger
- * 
- */
 @Local
 public interface UsuarioManager extends BaseManager<Usuario, Long> {
 	

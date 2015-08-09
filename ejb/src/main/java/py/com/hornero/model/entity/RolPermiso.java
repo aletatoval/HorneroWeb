@@ -11,11 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-/**
- * @author Hermann Bottger
- *
- */
-
 @Entity
 @Table(name="rol_permiso")
 public class RolPermiso extends EntidadBase {

@@ -8,10 +8,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 
- * @author Kiki
- */
 public interface GenericDao<T, ID extends Serializable> {
 
 	public T get(ID id);

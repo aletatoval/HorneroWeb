@@ -6,10 +6,6 @@ import javax.ejb.Stateless;
 
 import py.com.hornero.model.ejb.PermisoManager;
 import py.com.hornero.model.entity.Permiso;
-
-/**
- * Session Bean implementation class PermisoManagerImpl
- */
 @Stateless
 public class PermisoManagerImpl extends BaseManagerImpl<Permiso, Long> 
 		implements PermisoManager {

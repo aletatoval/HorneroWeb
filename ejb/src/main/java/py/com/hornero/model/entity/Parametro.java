@@ -8,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author Hermann Bottger
- */
 @Entity
 @Table(name = "PARAMETRO")
 public class Parametro implements Serializable {

@@ -9,21 +9,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-/**
- * @author Miguel
- *
- */
+
 @Entity
-public class Grupo  extends EntidadBase{
-	
+public class Grupo extends EntidadBase {
+
 	@NotNull
 	@Column(name = "nombre")
 	private String nombre;
 
-	
 	@ManyToOne(optional = false)
-    @JoinColumn(name = "empresa", referencedColumnName = "id")
-    private Empresa empresa;
+	@JoinColumn(name = "empresa", referencedColumnName = "id")
+	private Empresa empresa;
 
 	/**
 	 * 
@@ -31,7 +27,7 @@ public class Grupo  extends EntidadBase{
 	public Grupo() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * @param id
 	 *            el id de Grupo
@@ -55,7 +51,5 @@ public class Grupo  extends EntidadBase{
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
-	
-	
 
 }

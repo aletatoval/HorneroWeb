@@ -9,10 +9,6 @@ import java.sql.Timestamp;
 import py.com.hornero.model.ejb.BaseManager;
 import py.com.hornero.model.entity.EntidadBase;
 
-/**
- * @author Hermann Bottger
- * 
- */
 public abstract class BaseManagerImpl<T extends EntidadBase, ID extends Serializable>
 		extends GenericDaoImpl<T, ID> implements BaseManager<T, ID> {
 

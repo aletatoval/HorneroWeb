@@ -11,9 +11,6 @@ import py.com.hornero.model.ejb.RolManager;
 import py.com.hornero.model.entity.Empresa;
 import py.com.hornero.model.entity.Rol;
 
-/**
- * Session Bean implementation class RolManagerImpl
- */
 @Stateless
 public class RolManagerImpl extends BaseManagerImpl<Rol, Long> 
 		implements RolManager {

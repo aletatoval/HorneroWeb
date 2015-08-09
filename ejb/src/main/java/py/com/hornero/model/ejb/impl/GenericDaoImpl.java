@@ -21,14 +21,6 @@ import com.googlecode.genericdao.search.Search;
 import com.googlecode.genericdao.search.hibernate.HibernateMetadataUtil;
 import com.googlecode.genericdao.search.jpa.JPASearchProcessor;
 
-/**
- * 
- * @author JLima
- * @param <T>
- *            Clase Entidad
- * @param <ID>
- *            Clase ID de la Entidad
- */
 public abstract class GenericDaoImpl<T, ID extends Serializable> implements
 		GenericDao<T, ID> {
 

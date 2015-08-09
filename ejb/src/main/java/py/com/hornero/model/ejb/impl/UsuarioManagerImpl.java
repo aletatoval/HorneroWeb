@@ -17,20 +17,10 @@ import py.com.hornero.utils.Constantes;
 import py.com.hornero.utils.ExceptionHornero;
 import py.com.hornero.utils.json.JSONObject;
 
-/**
- * @author Hermann Bottger
- * 
- */
 @Stateless
 public class UsuarioManagerImpl extends BaseManagerImpl<Usuario, Long>
 		implements UsuarioManager {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * py.com.tangerine.model.ejb.impl.GenericDaoImpl#getEntityBeanType()
-	 */
 	
 	@Override
 	protected Class<Usuario> getEntityBeanType() {

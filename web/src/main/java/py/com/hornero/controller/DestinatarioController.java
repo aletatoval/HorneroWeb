@@ -33,17 +33,17 @@ import com.google.gson.Gson;
 
 /**
  * @author Miguel
- *
+ * 
  */
 @Controller
 @RequestMapping(value = "/destinatarios")
 public class DestinatarioController extends BaseController {
-	
+
 	private String atributosDestinatario = "id,nombre,destinatario,activo";
 
 	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/DestinatarioManagerImpl")
 	private DestinatarioManager destinatarioManager;
-	
+
 	/**
 	 * Servicio REST para listar todos los destinatarios
 	 * 
@@ -71,7 +71,6 @@ public class DestinatarioController extends BaseController {
 		Destinatario ejemplo = new Destinatario();
 		try {
 
-			
 			Gson gson = new Gson();
 			String camposFiltros = null;
 			String valorFiltro = null;
@@ -92,11 +91,12 @@ public class DestinatarioController extends BaseController {
 				}
 
 			}
-			
-			if(idEmpresa != null & idEmpresa.toString().compareToIgnoreCase("") != 0){
+
+			if (idEmpresa != null
+					& idEmpresa.toString().compareToIgnoreCase("") != 0) {
 				ejemplo.setEmpresa(new Empresa(Long.valueOf(idEmpresa)));
 			}
-			
+
 			pagina = pagina != null ? pagina : 1;
 			Integer total = 0;
 
@@ -112,10 +112,11 @@ public class DestinatarioController extends BaseController {
 			}
 
 			List<Map<String, Object>> listMapDestinatarios = destinatarioManager
-					.listAtributos(ejemplo, atributosDestinatario.split(","), todos,
-							inicio, cantidad, ordenarPor.split(","),
-							sentidoOrdenamiento.split(","), true, true, camposFiltros, valorFiltro);
-				
+					.listAtributos(ejemplo, atributosDestinatario.split(","),
+							todos, inicio, cantidad, ordenarPor.split(","),
+							sentidoOrdenamiento.split(","), true, true,
+							camposFiltros, valorFiltro);
+
 			if (todos) {
 				total = listMapDestinatarios.size();
 			}
@@ -142,7 +143,7 @@ public class DestinatarioController extends BaseController {
 		return retorno;
 
 	}
-	
+
 	/**
 	 * Servicio REST para persistir un nuevo destinatario
 	 * 
@@ -152,7 +153,8 @@ public class DestinatarioController extends BaseController {
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public HashMap<String, Object> agregarDestinatario(@RequestBody Destinatario nuevo,  HttpServletResponse response) {
+	public HashMap<String, Object> agregarDestinatario(
+			@RequestBody Destinatario nuevo, HttpServletResponse response) {
 
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
@@ -166,7 +168,7 @@ public class DestinatarioController extends BaseController {
 			// Controlamos que el nombre del destinatario no sea nulo o vacío.
 			if (nuevo.getNombre() == null
 					|| nuevo.getNombre().compareToIgnoreCase("") == 0) {
-				throw new ExceptionHornero("nombre","243",
+				throw new ExceptionHornero("nombre", "243",
 						"El nombre del destinatario no puede estar vacío");
 			}
 
@@ -175,11 +177,9 @@ public class DestinatarioController extends BaseController {
 			ejemploNombre.setNombre(nuevo.getNombre());
 			ejemploNombre.setEmpresa(new Empresa(userDetails.getIdEmpresa()));
 			if (destinatarioManager.total(ejemploNombre) > 0) {
-				throw new ExceptionHornero("nombre","244", "El nombre "
+				throw new ExceptionHornero("nombre", "244", "El nombre "
 						+ nuevo.getNombre() + " ya está en uso");
 			}
-
-
 
 			destinatarioManager.crear(nuevo, userDetails.getIdUsuario());
 
@@ -203,7 +203,7 @@ public class DestinatarioController extends BaseController {
 		retorno.put("meta", meta);
 		return retorno;
 	}
-	
+
 	/**
 	 * Servicio para editar un destinatario
 	 * 
@@ -211,10 +211,10 @@ public class DestinatarioController extends BaseController {
 	 *            la entidad Destinatario a modificar recibida de la vista
 	 */
 
-	@RequestMapping(value="/{id}", method = RequestMethod.PUT, produces = "application/json")
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
-	public HashMap<String, Object> modificarDestinatario(@PathVariable("id") Long id,
-			@RequestBody Destinatario destinatario) {
+	public HashMap<String, Object> modificarDestinatario(
+			@PathVariable("id") Long id, @RequestBody Destinatario destinatario) {
 
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
@@ -230,30 +230,32 @@ public class DestinatarioController extends BaseController {
 			// Controlamos que el nombre del destinatario no sea nulo o vacío.
 			if (destinatario.getNombre() == null
 					|| destinatario.getNombre().compareToIgnoreCase("") == 0) {
-				throw new ExceptionHornero("nombre","243",
+				throw new ExceptionHornero("nombre", "243",
 						"El nombre del destinatario no puede estar vacío");
 			}
 
 			Destinatario ejemploNombre = new Destinatario();
 			ejemploNombre.setNombre(destinatario.getNombre());
 			ejemploNombre.setEmpresa(new Empresa(userDetails.getIdEmpresa()));
-			Map<String, Object> destinatarioBD = destinatarioManager.getAtributos(
-					ejemploNombre, atributosDestinatario.split(","), false, true);
+			Map<String, Object> destinatarioBD = destinatarioManager
+					.getAtributos(ejemploNombre,
+							atributosDestinatario.split(","), false, true);
 
 			if (destinatarioBD != null
 					&& destinatarioBD.containsKey("id")
 					&& !(Long.parseLong(destinatarioBD.get("id").toString()) == anterior
 							.getId())) {
-				throw new ExceptionHornero("nombre","300", "El destinatario con el nombre "
-						+ destinatario.getNombre() + " ya existe");
+				throw new ExceptionHornero("nombre", "300",
+						"El destinatario con el nombre "
+								+ destinatario.getNombre() + " ya existe");
 			}
 
-
-			destinatario = destinatarioManager.actualizar(destinatario, userDetails.getIdUsuario());
+			destinatario = destinatarioManager.actualizar(destinatario,
+					userDetails.getIdUsuario());
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
-					"El destinatario se modifico con éxito", "300", ESTADO_EXITO,
-					OP_ALTA, userDetails.getIdUsuario(),
+					"El destinatario se modifico con éxito", "300",
+					ESTADO_EXITO, OP_ALTA, userDetails.getIdUsuario(),
 					userDetails.getIdEmpresa(), null, false);
 
 			retorno.put("destinatario", destinatario);
@@ -261,14 +263,14 @@ public class DestinatarioController extends BaseController {
 		} catch (Exception ex) {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
-					"Error al agregar el rol", "300", ESTADO_ERROR,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					"Error al agregar el rol", "300", ESTADO_ERROR, OP_ALTA,
+					userDetails.getIdUsuario(), userDetails.getIdEmpresa(), ex,
+					false);
 		}
 		retorno.put("meta", meta);
 		return retorno;
 	}
-	
+
 	/**
 	 * Recibe un string que es un json y devuelve una entidad con los valores
 	 * recibidos
@@ -277,8 +279,8 @@ public class DestinatarioController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	public static Destinatario generarEjemplo(FiltroDTO filtro, Destinatario ejemplo)
-			throws Exception {
+	public static Destinatario generarEjemplo(FiltroDTO filtro,
+			Destinatario ejemplo) throws Exception {
 
 		if (ejemplo == null) {
 			ejemplo = new Destinatario();
@@ -300,5 +302,3 @@ public class DestinatarioController extends BaseController {
 	}
 
 }
-
-

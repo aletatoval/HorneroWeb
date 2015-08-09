@@ -23,21 +23,10 @@ import com.googlecode.genericdao.search.Search;
 import com.googlecode.genericdao.search.hibernate.HibernateMetadataUtil;
 import com.googlecode.genericdao.search.jpa.JPASearchProcessor;
 
-
-/**
- * @author Osmar Olmedo
- * 
- */
 @Stateless
 public class LocalizacionManagerImpl extends BaseManagerImpl<Localizacion, Long>  implements
 		LocalizacionManager {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * py.com.personal.visitas.model.ejb.impl.GenericDaoImpl#getEntityBeanType()
-	 */
 	@Override
 	protected Class<Localizacion> getEntityBeanType() {
 		return Localizacion.class;

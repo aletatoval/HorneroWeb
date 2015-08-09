@@ -12,11 +12,6 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
-/**
- * @author Jessica Gonzalez
- * 
- */
-
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "alias", "empresa" }))
 public class Usuario extends EntidadBase {

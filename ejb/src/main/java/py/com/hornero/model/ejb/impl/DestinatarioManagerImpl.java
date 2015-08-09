@@ -8,10 +8,6 @@ import javax.ejb.Stateless;
 import py.com.hornero.model.ejb.DestinatarioManager;
 import py.com.hornero.model.entity.Destinatario;
 
-/**
- * @author Miguel
- *
- */
 @Stateless
 public class DestinatarioManagerImpl extends BaseManagerImpl<Destinatario, Long> 
 	implements DestinatarioManager{

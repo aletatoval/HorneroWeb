@@ -12,10 +12,6 @@ import javax.ejb.Local;
 import py.com.hornero.model.entity.Localizacion;
 import py.com.hornero.model.entity.RolPermiso;
 
-/**
- * @author Osmar Olmedo
- * 
- */
 @Local
 public interface LocalizacionManager extends BaseManager<Localizacion, Long> {
 	 public List<Map<String, Object>> listUltimaLocalizacion(Localizacion ejemplo,

@@ -9,21 +9,9 @@ import javax.ejb.Stateless;
 
 import py.com.hornero.model.ejb.EmpresaManager;
 import py.com.hornero.model.entity.Empresa;
-
-/**
- * @author Hermann Bottger
- * 
- */
 @Stateless
 public class EmpresaManagerImpl extends BaseManagerImpl<Empresa, Long>
 		implements EmpresaManager {
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * py.com.personal.visitas.model.ejb.impl.GenericDaoImpl#getEntityBeanType()
-	 */
 	
 	@Override
 	protected Class<Empresa> getEntityBeanType() {

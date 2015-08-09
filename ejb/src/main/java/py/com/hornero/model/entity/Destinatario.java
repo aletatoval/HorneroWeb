@@ -13,10 +13,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 
-/**
- * @author Miguel
- *
- */
 @Entity
 public class Destinatario extends EntidadBase {
 

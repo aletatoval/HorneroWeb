@@ -1,16 +1,10 @@
-/**
- * 
- */
 package py.com.hornero.model.ejb;
 
 import java.io.Serializable;
 
 import py.com.hornero.model.entity.EntidadBase;
 
-/**
- * @author Hermann Bottger
- * 
- */
+
 public interface BaseManager<T extends EntidadBase, ID extends Serializable>
 		extends GenericDao<T, ID> {
 
