@@ -26,7 +26,7 @@ import com.google.gson.GsonBuilder;
 @Controller
 public class ServiciosActualizacion extends BaseController {
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/LocalizacionManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/LocalizacionManagerImpl")
 	private LocalizacionManager localizacionManager;
 
 	@RequestMapping(value = "/movil/guardarLocalizacion", produces = "application/json", method = RequestMethod.POST)

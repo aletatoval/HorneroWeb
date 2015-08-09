@@ -34,10 +34,10 @@ import py.com.hornero.utils.json.JSONObject;
 @RequestMapping(value = "/")
 public class LoginController extends BaseController {
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/ParametroManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/ParametroManagerImpl")
 	private ParametroManager parametroManager;
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/RolPermisoManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolPermisoManagerImpl")
 	private RolPermisoManager rolPermisoManager;
 
 	@Autowired

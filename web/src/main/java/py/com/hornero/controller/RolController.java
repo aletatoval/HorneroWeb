@@ -34,20 +34,16 @@ import py.com.hornero.utils.json.JSONArray;
 import py.com.hornero.utils.utils.FiltroDTO;
 import py.com.hornero.utils.utils.ReglaDTO;
 
-/**
- * 
- * @author Sofia Orue
- */
 @Controller
 @RequestMapping(value = "/roles")
 public class RolController extends BaseController {
 
 	private String atributosRol = "id,nombre,empresa.id,activo";
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/RolManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolManagerImpl")
 	private RolManager rolManager;
 	
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/RolPermisoManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolPermisoManagerImpl")
 	private RolPermisoManager rolPermisoManager;
 
 	/**

@@ -41,7 +41,7 @@ import py.com.hornero.utils.utils.ReglaDTO;
 @RequestMapping(value = "/usuarios")
 public class UsuarioController extends BaseController {
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/ParametroManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/ParametroManagerImpl")
 	private ParametroManager parametroManager;
 
 	@Autowired

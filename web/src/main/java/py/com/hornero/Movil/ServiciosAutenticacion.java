@@ -23,7 +23,7 @@ import py.com.hornero.utils.utils.RespuestaLista;
 @Controller
 public class ServiciosAutenticacion extends BaseController {
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/RolPermisoManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolPermisoManagerImpl")
 	private RolPermisoManager rolPermisoManager;
 
 	@RequestMapping(value = "/movil/autenticar", method = RequestMethod.POST, produces = "application/json")

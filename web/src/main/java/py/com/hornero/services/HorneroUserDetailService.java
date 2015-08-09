@@ -32,10 +32,10 @@ import py.com.hornero.utils.ExceptionHornero;
 public class HorneroUserDetailService extends BaseController implements
 		UserDetailsService {
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/UsuarioManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/UsuarioManagerImpl")
 	private UsuarioManager usuarioManager;
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/RolPermisoManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolPermisoManagerImpl")
 	private RolPermisoManager rolPermisoManager;
 
 	/**

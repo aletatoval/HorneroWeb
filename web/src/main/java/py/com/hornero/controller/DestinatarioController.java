@@ -31,17 +31,13 @@ import py.com.hornero.utils.utils.ReglaDTO;
 
 import com.google.gson.Gson;
 
-/**
- * @author Miguel
- * 
- */
 @Controller
 @RequestMapping(value = "/destinatarios")
 public class DestinatarioController extends BaseController {
 
 	private String atributosDestinatario = "id,nombre,destinatario,activo";
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/DestinatarioManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/DestinatarioManagerImpl")
 	private DestinatarioManager destinatarioManager;
 
 	/**

@@ -56,13 +56,13 @@ public class BaseController {
 	public static final String OP_SINCRONIZACION = "Sincronizacion";
 	public static final String OP_DESCARGA = "Descarga";
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/UsuarioManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/UsuarioManagerImpl")
 	public UsuarioManager usuarioManager;
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/ParametroManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/ParametroManagerImpl")
 	public ParametroManager parametroManager;
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/LogAppManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/LogAppManagerImpl")
 	public LogAppManager logAppManager;
 
 	public SimpleDateFormat sdf = new SimpleDateFormat(

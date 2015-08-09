@@ -30,17 +30,13 @@ import py.com.hornero.utils.utils.ReglaDTO;
 
 import com.google.gson.Gson;
 
-/**
- * @author Miguel
- *
- */
 @Controller
 @RequestMapping(value = "/grupos")
 public class GrupoController extends BaseController{
 	
 	private String atributosGrupo = "id,nombre,activo";
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/GrupoManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/GrupoManagerImpl")
 	private GrupoManager grupoManager;
 	
 	/**

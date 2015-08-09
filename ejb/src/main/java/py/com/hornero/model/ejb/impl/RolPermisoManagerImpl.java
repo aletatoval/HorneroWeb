@@ -25,13 +25,13 @@ public class RolPermisoManagerImpl extends BaseManagerImpl<RolPermiso, Long>
 	private String atributosRolPermiso = "id,permiso.nombre";
 
 	
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/RolManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolManagerImpl")
 	private RolManager rolManager;
 	
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/PermisoManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/PermisoManagerImpl")
 	private PermisoManager permisoManager;
 	
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/RolPermisoManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolPermisoManagerImpl")
 	private RolPermisoManager rolPermisoManager;
 
 	@Override

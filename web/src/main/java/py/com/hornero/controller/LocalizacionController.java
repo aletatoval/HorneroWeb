@@ -31,7 +31,7 @@ import py.com.hornero.utils.ExceptionHornero;
 @RequestMapping(value = "/localizaciones")
 public class LocalizacionController extends BaseController {
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/LocalizacionManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/LocalizacionManagerImpl")
 	private LocalizacionManager localizacionManager;
 
 	/**

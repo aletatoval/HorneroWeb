@@ -30,17 +30,13 @@ import py.com.hornero.utils.utils.ReglaDTO;
 
 import com.google.gson.Gson;
 
-/**
- * 
- * @author Mabel Peña
- */
 @Controller
 @RequestMapping(value = "/permisos")
 public class PermisoController extends BaseController {
 
 	private String atributosPermisos = "id,nombre,activo";
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/PermisoManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/PermisoManagerImpl")
 	private PermisoManager permisoManager;
 
 	/**

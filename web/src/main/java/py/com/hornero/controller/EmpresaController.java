@@ -45,11 +45,11 @@ public class EmpresaController extends BaseController {
 	private String atributosEmpresa = "id,activo,nombre,alias,ruc,codigoAcceso,descripcion,direccion"
 			+ ",telefono,email,soporteNombre,soporteTelefono,soporteEmail";
 
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/EmpresaManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/EmpresaManagerImpl")
 	private EmpresaManager empresaManager;
 	
 	
-	@EJB(mappedName = "java:global/mensajeriaapp-ear/mensajeriaapp-ejb/RolManagerImpl")
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolManagerImpl")
 	private RolManager rolManager;
 
 	/**

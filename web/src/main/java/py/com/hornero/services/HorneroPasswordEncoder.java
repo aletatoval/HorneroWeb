@@ -23,7 +23,7 @@ import py.com.hornero.utils.ExceptionHornero;
 public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 
 	private static final org.slf4j.Logger logger = LoggerFactory
-			.getLogger("mensajeriaapp");
+			.getLogger("horneroapp");
 
 	private UsuarioManager usuarioManager;
 
@@ -155,7 +155,7 @@ public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 			try {
 
 				usuarioManager = (UsuarioManager) context
-						.lookup("java:app/mensajeriaapp-ejb/UsuarioManagerImpl");
+						.lookup("java:app/horneroapp-ejb/UsuarioManagerImpl");
 			} catch (NamingException ne) {
 				throw new RuntimeException(
 						"No se encuentra EJB valor Manager: ", ne);
@@ -175,7 +175,7 @@ public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 			try {
 
 				logAppManager = (LogAppManager) context
-						.lookup("java:app/mensajeriaapp-ejb/LogAppManagerImpl");
+						.lookup("java:app/horneroapp-ejb/LogAppManagerImpl");
 			} catch (NamingException ne) {
 				throw new RuntimeException(
 						"No se encuentra EJB valor Manager: ", ne);
