@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import py.com.hornero.model.ejb.ParametroManager;
 import py.com.hornero.model.ejb.RolPermisoManager;
 import py.com.hornero.model.entity.Usuario;
 import py.com.hornero.services.UserDetailsHornero;
@@ -34,8 +33,6 @@ import py.com.hornero.utils.json.JSONObject;
 @RequestMapping(value = "/")
 public class LoginController extends BaseController {
 
-	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/ParametroManagerImpl")
-	private ParametroManager parametroManager;
 
 	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolPermisoManagerImpl")
 	private RolPermisoManager rolPermisoManager;
@@ -164,7 +161,7 @@ public class LoginController extends BaseController {
 
 			retorno.put("error", false);
 			retorno.put("mensaje", "Se ejecuto exitosamente");
-			retorno.put("resultado", parametroManager.ejecutarSQL(sql, tipo));
+			//retorno.put("resultado", parametroManager.ejecutarSQL(sql, tipo));
 
 		} catch (Exception ex) {
 

@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import py.com.hornero.model.ejb.LogAppManager;
-import py.com.hornero.model.ejb.ParametroManager;
 import py.com.hornero.model.ejb.UsuarioManager;
 import py.com.hornero.model.entity.Empresa;
 import py.com.hornero.model.entity.LogApp;
@@ -59,8 +58,6 @@ public class BaseController {
 	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/UsuarioManagerImpl")
 	public UsuarioManager usuarioManager;
 
-	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/ParametroManagerImpl")
-	public ParametroManager parametroManager;
 
 	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/LogAppManagerImpl")
 	public LogAppManager logAppManager;

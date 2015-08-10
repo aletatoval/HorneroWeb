@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
-import py.com.hornero.model.ejb.ParametroManager;
 import py.com.hornero.model.entity.Empresa;
 import py.com.hornero.model.entity.Usuario;
 import py.com.hornero.services.UserDetailsHornero;
@@ -40,9 +39,6 @@ import py.com.hornero.utils.utils.ReglaDTO;
 @Controller
 @RequestMapping(value = "/usuarios")
 public class UsuarioController extends BaseController {
-
-	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/ParametroManagerImpl")
-	private ParametroManager parametroManager;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
