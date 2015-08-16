@@ -60,7 +60,7 @@ public class PermisoController extends BaseController {
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 			
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		Permiso ejemplo = new Permiso();
 		try {
@@ -115,8 +115,8 @@ public class PermisoController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"Se listaron exitosamente los permisos", "300",
-					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 null, false);
 
 			meta.put("totalDatos", total);
 			meta.put("pagina", pagina);
@@ -125,8 +125,8 @@ public class PermisoController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al obtener la lista de permisos", "300",
-					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 ex, false);
 		}
 
 		retorno.put("meta", meta);
@@ -148,7 +148,7 @@ public class PermisoController extends BaseController {
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		try {
 
@@ -157,8 +157,8 @@ public class PermisoController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"El usuario se obtuvo exitosamente", "300", ESTADO_EXITO,
-					OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 null, false);
 
 			retorno.put("permiso", permiso);
 
@@ -166,8 +166,8 @@ public class PermisoController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al obtener el permiso solicitado", "300",
-					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 ex, false);
 
 		}
 
@@ -190,7 +190,7 @@ public class PermisoController extends BaseController {
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		logger.info("Inició correctamente el método agregar permisos por el usuario "
 				+ userDetails.getNombreCompleto());
@@ -212,12 +212,12 @@ public class PermisoController extends BaseController {
 						+ nuevo.getNombre() + " ya está en uso");
 			}
 
-			permisoManager.crear(nuevo, userDetails.getIdUsuario());
+			permisoManager.crear(nuevo, userDetails.getIdFuncionario());
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"El permiso se agregó con éxito", "300", ESTADO_EXITO,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					 null, false);
 
 			retorno.put("permiso", nuevo);
 			response.setStatus(201);
@@ -227,8 +227,8 @@ public class PermisoController extends BaseController {
 			response.setStatus(422);
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al agregar el permiso", "300", ESTADO_ERROR,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					 ex, false);
 
 		}
 		retorno.put("meta", meta);
@@ -250,7 +250,7 @@ public class PermisoController extends BaseController {
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		try {
 
@@ -280,12 +280,12 @@ public class PermisoController extends BaseController {
 			}
 			
 
-			permisoManager.actualizar(permiso, userDetails.getIdUsuario());
+			permisoManager.actualizar(permiso, userDetails.getIdFuncionario());
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"El permiso se modifico con éxito", "300", ESTADO_EXITO,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					null, false);
 
 			retorno.put("permiso", permiso);
 
@@ -293,8 +293,8 @@ public class PermisoController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al agregar el permiso", "300", ESTADO_ERROR,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					 ex, false);
 		}
 		retorno.put("meta", meta);
 		return retorno;

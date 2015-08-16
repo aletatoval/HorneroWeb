@@ -34,19 +34,14 @@ public class LogApp implements Serializable {
     @Column(name = "FECHA_ACCION", nullable = false)
     private Timestamp fechaAccion;
 
-    @Column(name = "IMEI", length = 64)
-    private String imei;
     
     @Column(name = "MENSAJE", length = 512, nullable = false)
     private String mensaje;
     
-    @ManyToOne(optional = true)
-    @JoinColumn(name="EMPRESA", referencedColumnName="id")
-    private Empresa empresa;
 
     @ManyToOne(optional = true)
-    @JoinColumn(name="USUARIO", referencedColumnName="id")
-    private Usuario usuario;
+    @JoinColumn(name="FUNCIONARIO", referencedColumnName="id")
+    private Funcionario funcionario;
 
     public Long getPkLogApp() {
         return id;
@@ -147,22 +142,6 @@ public class LogApp implements Serializable {
     }
 
     
-    /**
-     * @return the imei
-     */
-    public String getImei() {
-    
-        return imei;
-    }
-
-    
-    /**
-     * @param imei the imei to set
-     */
-    public void setImei(String imei) {
-    
-        this.imei = imei;
-    }
 
     
     /**
@@ -183,36 +162,15 @@ public class LogApp implements Serializable {
     }
 
     
-    /**
-     * @return the empresa
-     */
-    public Empresa getEmpresa() {
-    
-        return empresa;
-    }
 
-    
-    /**
-     * @param empresa the empresa to set
-     */
-    public void setEmpresa(Empresa empresa) {
-    
-        this.empresa = empresa;
-    }
-
-	/**
-	 * @return the usuario
-	 */
-	public Usuario getUsuario() {
-		return usuario;
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
 
-	/**
-	 * @param usuario the usuario to set
-	 */
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
+
 
     
     

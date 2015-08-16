@@ -62,7 +62,7 @@ public class DestinatarioController extends BaseController {
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		Destinatario ejemplo = new Destinatario();
 		try {
@@ -121,8 +121,8 @@ public class DestinatarioController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"Se listaron exitosamentes los destinatarios", "300",
-					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 null, false);
 
 			meta.put("totalDatos", total);
 			meta.put("pagina", pagina);
@@ -131,8 +131,8 @@ public class DestinatarioController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al obtener la lista de destinatarios", "300",
-					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 ex, false);
 		}
 
 		retorno.put("meta", meta);
@@ -155,7 +155,7 @@ public class DestinatarioController extends BaseController {
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		logger.info("Inició correctamente el método agregar destinatario por el usuario "
 				+ userDetails.getNombreCompleto());
@@ -171,18 +171,17 @@ public class DestinatarioController extends BaseController {
 			// Controlamos que el nombre del rol no está ya en uso.
 			Destinatario ejemploNombre = new Destinatario();
 			ejemploNombre.setNombre(nuevo.getNombre());
-			ejemploNombre.setEmpresa(new Empresa(userDetails.getIdEmpresa()));
 			if (destinatarioManager.total(ejemploNombre) > 0) {
 				throw new ExceptionHornero("nombre", "244", "El nombre "
 						+ nuevo.getNombre() + " ya está en uso");
 			}
 
-			destinatarioManager.crear(nuevo, userDetails.getIdUsuario());
+			destinatarioManager.crear(nuevo, userDetails.getIdFuncionario());
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"El destinatario se agregó con éxito", "300", ESTADO_EXITO,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					 null, false);
 
 			retorno.put("destinatario", nuevo);
 			response.setStatus(201);
@@ -192,8 +191,8 @@ public class DestinatarioController extends BaseController {
 			response.setStatus(422);
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al agregar el destinatario", "300", ESTADO_ERROR,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					ex, false);
 
 		}
 		retorno.put("meta", meta);
@@ -215,7 +214,7 @@ public class DestinatarioController extends BaseController {
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		try {
 
@@ -232,7 +231,6 @@ public class DestinatarioController extends BaseController {
 
 			Destinatario ejemploNombre = new Destinatario();
 			ejemploNombre.setNombre(destinatario.getNombre());
-			ejemploNombre.setEmpresa(new Empresa(userDetails.getIdEmpresa()));
 			Map<String, Object> destinatarioBD = destinatarioManager
 					.getAtributos(ejemploNombre,
 							atributosDestinatario.split(","), false, true);
@@ -247,12 +245,12 @@ public class DestinatarioController extends BaseController {
 			}
 
 			destinatario = destinatarioManager.actualizar(destinatario,
-					userDetails.getIdUsuario());
+					userDetails.getIdFuncionario());
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"El destinatario se modifico con éxito", "300",
-					ESTADO_EXITO, OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					ESTADO_EXITO, OP_ALTA, userDetails.getIdFuncionario(),
+					 null, false);
 
 			retorno.put("destinatario", destinatario);
 
@@ -260,7 +258,7 @@ public class DestinatarioController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al agregar el rol", "300", ESTADO_ERROR, OP_ALTA,
-					userDetails.getIdUsuario(), userDetails.getIdEmpresa(), ex,
+					userDetails.getIdFuncionario(),  ex,
 					false);
 		}
 		retorno.put("meta", meta);

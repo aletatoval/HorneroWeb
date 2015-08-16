@@ -16,7 +16,7 @@ import py.com.hornero.controller.BaseController;
 import py.com.hornero.model.ejb.LocalizacionManager;
 import py.com.hornero.model.entity.Empresa;
 import py.com.hornero.model.entity.Localizacion;
-import py.com.hornero.model.entity.Usuario;
+import py.com.hornero.model.entity.Funcionario;
 import py.com.hornero.utils.Constantes;
 import py.com.hornero.utils.Respuesta;
 
@@ -31,13 +31,13 @@ public class ServiciosActualizacion extends BaseController {
 
 	@RequestMapping(value = "/movil/guardarLocalizacion", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	public Respuesta<Usuario> guardarLocalizacion(
+	public Respuesta<Funcionario> guardarLocalizacion(
 			@RequestBody String entidad) {
 
 
 		Map<String, Object> userDetails = null;
 		Map<String, Object> retornoValidacion = new HashMap<String, Object>();
-		Respuesta<Usuario> respuesta = new Respuesta<Usuario>();
+		Respuesta<Funcionario> respuesta = new Respuesta<Funcionario>();
 		
 		try {
 
@@ -45,7 +45,7 @@ public class ServiciosActualizacion extends BaseController {
 					"yyyy-MM-dd HH:mm:ss.SSS").create();
 
 			// Gson gson = new Gson();
-			retornoValidacion = usuarioManager.obtenerUsuarioLogueado(entidad,
+			retornoValidacion = funcionarioManager.obtenerFuncionarioLogueado(entidad,
 							"id,nombre,alias,documento,activo,clave,rol.id,"
 									+ "empresa.id,empresa.nombre,empresa.alias,empresa.activo,tiempoMuestra,horaInicioMuestra,horaFinMuestra");
 
@@ -54,16 +54,14 @@ public class ServiciosActualizacion extends BaseController {
 			
 			Gson gsonUser = new GsonBuilder().create();	
 			
-			Usuario aEnviar = gsonUser.fromJson(gsonUser.toJson(userDetails), Usuario.class);
+			Funcionario aEnviar = gsonUser.fromJson(gsonUser.toJson(userDetails), Funcionario.class);
 			respuesta.setResultado(aEnviar);
 
 			Localizacion localizacion = new Localizacion();
 			localizacion = gson.fromJson(entidad, Localizacion.class);
 
-			localizacion.setUsuario(new Usuario(Long.parseLong(userDetails.get(
+			localizacion.setFuncionario(new Funcionario(Long.parseLong(userDetails.get(
 					"id").toString())));
-			localizacion.setEmpresa(new Empresa(Long.parseLong(userDetails.get(
-					"empresa.id").toString())));
 			localizacion.setFechaSincronizacion(new Timestamp(System
 					.currentTimeMillis()));
 
@@ -84,17 +82,17 @@ public class ServiciosActualizacion extends BaseController {
 		} catch (Exception ex) {
 
 			Long idEmpresa = null;
-			Long idUsuario = null;
+			Long idFuncionario = null;
 			if (userDetails != null) {
 				idEmpresa = Long.parseLong(userDetails.get("empresa.id")
 						.toString());
-				idUsuario = Long.parseLong(userDetails.get("id").toString());
+				idFuncionario = Long.parseLong(userDetails.get("id").toString());
 			}
 			respuesta.setError(true);
 			respuesta.setValido(false);
 			respuesta.setMensaje(generarMensaje(null,Constantes.MENSAJE_ERROR,
-					"Error al guardar la localización de la línea " + idUsuario,
-					"100", ESTADO_ERROR, OP_SINCRONIZACION, idUsuario,idEmpresa, ex, true).get(0).toString()); 
+					"Error al guardar la localización de la línea " + idFuncionario,
+					"100", ESTADO_ERROR, OP_SINCRONIZACION, idFuncionario, ex, true).get(0).toString()); 
 		}
 
 		return respuesta;

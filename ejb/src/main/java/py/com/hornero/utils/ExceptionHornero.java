@@ -1,10 +1,6 @@
 package py.com.hornero.utils;
 
 public class ExceptionHornero extends Exception {
-
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String mensaje;
 	private String codigo;

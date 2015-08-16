@@ -61,7 +61,7 @@ public class GrupoController extends BaseController{
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		Grupo ejemplo = new Grupo();
 		try {
@@ -119,8 +119,8 @@ public class GrupoController extends BaseController{
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"Se listaron exitosamentes los grupos", "300",
-					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 null, false);
 
 			meta.put("totalDatos", total);
 			meta.put("pagina", pagina);
@@ -129,8 +129,8 @@ public class GrupoController extends BaseController{
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al obtener la lista de grupos", "300",
-					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 ex, false);
 		}
 
 		retorno.put("meta", meta);
@@ -152,7 +152,7 @@ public class GrupoController extends BaseController{
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		logger.info("Inició correctamente el método agregar grupo por el usuario "
 				+ userDetails.getNombreCompleto());
@@ -168,7 +168,6 @@ public class GrupoController extends BaseController{
 			// Controlamos que el nombre del grupo no está ya en uso.
 			Grupo ejemploNombre = new Grupo();
 			ejemploNombre.setNombre(nuevo.getNombre());
-			ejemploNombre.setEmpresa(new Empresa(userDetails.getIdEmpresa()));
 			
 			if (grupoManager.total(ejemploNombre) > 0) {
 				throw new ExceptionHornero("nombre","244", "El nombre "
@@ -176,14 +175,13 @@ public class GrupoController extends BaseController{
 			}
 
 
-			nuevo.setEmpresa(new Empresa(userDetails.getIdEmpresa()));
 			
-			nuevo = grupoManager.crear(nuevo, userDetails.getIdUsuario());
+			nuevo = grupoManager.crear(nuevo, userDetails.getIdFuncionario());
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"El grupo se agregó con éxito", "300", ESTADO_EXITO,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+				null, false);
 
 			retorno.put("grupo", nuevo);
 			response.setStatus(201);
@@ -193,8 +191,8 @@ public class GrupoController extends BaseController{
 			response.setStatus(422);
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al agregar el grupo", "300", ESTADO_ERROR,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					ex, false);
 
 		}
 		retorno.put("meta", meta);
@@ -216,7 +214,7 @@ public class GrupoController extends BaseController{
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		try {
 
@@ -233,7 +231,6 @@ public class GrupoController extends BaseController{
 
 			Grupo ejemploNombre = new Grupo();
 			ejemploNombre.setNombre(grupo.getNombre());
-			ejemploNombre.setEmpresa(new Empresa(userDetails.getIdEmpresa()));
 			Map<String, Object> destinatarioBD = grupoManager.getAtributos(
 					ejemploNombre, atributosGrupo.split(","), false, true);
 
@@ -246,12 +243,12 @@ public class GrupoController extends BaseController{
 			}
 
 
-			grupo = grupoManager.actualizar(grupo, userDetails.getIdUsuario());
+			grupo = grupoManager.actualizar(grupo, userDetails.getIdFuncionario());
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"El destinatario se modifico con éxito", "300", ESTADO_EXITO,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					 null, false);
 
 			retorno.put("grupo", grupo);
 
@@ -259,8 +256,8 @@ public class GrupoController extends BaseController{
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al agregar el rol", "300", ESTADO_ERROR,
-					OP_ALTA, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					OP_ALTA, userDetails.getIdFuncionario(),
+					 ex, false);
 		}
 		retorno.put("meta", meta);
 		return retorno;

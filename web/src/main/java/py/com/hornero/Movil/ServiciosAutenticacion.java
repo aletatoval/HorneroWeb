@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import py.com.hornero.controller.BaseController;
 import py.com.hornero.model.ejb.RolPermisoManager;
-import py.com.hornero.model.entity.Usuario;
+import py.com.hornero.model.entity.Funcionario;
 import py.com.hornero.utils.Constantes;
 import py.com.hornero.utils.ExceptionHornero;
 import py.com.hornero.utils.Respuesta;
@@ -28,55 +28,54 @@ public class ServiciosAutenticacion extends BaseController {
 
 	@RequestMapping(value = "/movil/autenticar", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public Respuesta<Usuario> autenticarUsuario(@RequestBody String user) {
+	public Respuesta<Funcionario> autenticarFuncionario(@RequestBody String user) {
 		
-		Respuesta<Usuario> respuesta = new Respuesta<Usuario>();
+		Respuesta<Funcionario> respuesta = new Respuesta<Funcionario>();
 		
-		Usuario usuario = new Usuario();
-		Map<String, Object> usuarioRes = new HashMap<String, Object>();
-		Map<String, Object> validarUsuario = null;
+		Funcionario funcionario = new Funcionario();
+		Map<String, Object> funcionarioRes = new HashMap<String, Object>();
+		Map<String, Object> validarFuncionario = null;
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 
 		try {
 
-			validarUsuario = usuarioManager.obtenerUsuarioLogueado(user,
+			validarFuncionario = funcionarioManager.obtenerFuncionarioLogueado(user,
 							"id,nombre,alias,documento,activo,clave,rol.id,"
 							+ "empresa.id,empresa.nombre,empresa.alias,empresa.activo,tiempoMuestra,horaInicioMuestra,horaFinMuestra");
 			
-			usuarioRes = (Map<String, Object>) validarUsuario.get("resultado");
+			funcionarioRes = (Map<String, Object>) validarFuncionario.get("resultado");
 			
-			usuario = usuarioManager.get(new Usuario(Long.parseLong(usuarioRes.get("id").toString())));
-			usuario.setClave(null);
+			funcionario = funcionarioManager.get(new Funcionario(Long.parseLong(funcionarioRes.get("id").toString())));
+			funcionario.setContraseña(null);
 
 			respuesta.setError(false);
             respuesta.setValido(true);
-            respuesta.setResultado(usuario);
+            respuesta.setResultado(funcionario);
 			respuesta.setMensaje("Login Exitoso, Bienvenido");
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
-					(String) validarUsuario.get("mensaje"), "", ESTADO_EXITO,
-					OP_LOGIN, Long.parseLong(usuarioRes.get("id").toString()),
-					Long.parseLong(usuarioRes.get("empresa.id").toString()),
+					(String) validarFuncionario.get("mensaje"), "", ESTADO_EXITO,
+					OP_LOGIN, Long.parseLong(funcionarioRes.get("id").toString()),
 					null, true);
-			meta.put("error", validarUsuario.get("error"));
-			meta.put("codigoError", validarUsuario.get("codError"));
+			meta.put("error", validarFuncionario.get("error"));
+			meta.put("codigoError", validarFuncionario.get("codError"));
 
 		} catch (Exception ex) {
 
-			Long idUsuario = null;
+			Long idFuncionario = null;
 			Long idEmpresa = null;
 
-			if (usuarioRes != null && usuarioRes.containsKey("id")) {
-				idUsuario = Long.parseLong(usuarioRes.get("id").toString());
-				if (usuarioRes.containsKey("empresa.id")) {
-					idEmpresa = Long.parseLong(usuarioRes.get("empresa.id")
+			if (funcionarioRes != null && funcionarioRes.containsKey("id")) {
+				idFuncionario = Long.parseLong(funcionarioRes.get("id").toString());
+				if (funcionarioRes.containsKey("empresa.id")) {
+					idEmpresa = Long.parseLong(funcionarioRes.get("empresa.id")
 							.toString());
 				}
 			}
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al loguerse", "100", ESTADO_ERROR, OP_LOGIN,
-					idUsuario, idEmpresa, ex, true);
+					idFuncionario, ex, true);
 
 		}
 		return respuesta;
@@ -95,12 +94,12 @@ public class ServiciosAutenticacion extends BaseController {
 		RespuestaLista<String> respuesta = new RespuestaLista<String>();
 		// RespuestaLista<String> respuestaPermiso = new
 		// RespuestaLista<String>();
-		List<String> permisosTangerine = null;
+		List<String> permisosHornero = null;
 		Map<String, Object> userDetails = null;
 
 		try {
 
-			userDetails = usuarioManager.obtenerUsuarioLogueado(entidad, null);
+			userDetails = funcionarioManager.obtenerFuncionarioLogueado(entidad, null);
 
 			// TODO servicios para listar permisos
 			// respuestaPermiso =
@@ -108,19 +107,19 @@ public class ServiciosAutenticacion extends BaseController {
 			// userDetails.get("empresa.alias").toString(),
 			// userDetails.get("nombreRol").toString());
 
-			permisosTangerine = rolPermisoManager.listarPermisos(
+			permisosHornero = rolPermisoManager.listarPermisos(
 					(Long) userDetails.get("empresa.id"),
 					(Long) userDetails.get("rol.id"));
 
-			if (permisosTangerine == null || permisosTangerine.size() <= 0
-					|| permisosTangerine.isEmpty()) {
-				throw new ExceptionHornero(null,"", "El usuario "
+			if (permisosHornero == null || permisosHornero.size() <= 0
+					|| permisosHornero.isEmpty()) {
+				throw new ExceptionHornero(null,"", "El funcionario "
 						+ userDetails.get("alias").toString()
 						+ " no posee permisos para esta aplicación");
 			}
 
-			respuesta.setResultado(permisosTangerine);
-			respuesta.setTotalRegistros(permisosTangerine.size());
+			respuesta.setResultado(permisosHornero);
+			respuesta.setTotalRegistros(permisosHornero.size());
 			respuesta.setError(false);
 			respuesta.setValido(Boolean.TRUE);
 			respuesta.setMensaje("Operación descarga de permisos exitosa.");
@@ -128,11 +127,11 @@ public class ServiciosAutenticacion extends BaseController {
 
 		} catch (Exception ex) {
 
-			Long idUsuario = null;
+			Long idFuncionario = null;
 			Long idEmpresa = null;
 
 			if (userDetails != null) {
-				idUsuario = Long.parseLong(userDetails.get("id").toString());
+				idFuncionario = Long.parseLong(userDetails.get("id").toString());
 				idEmpresa = Long.parseLong(userDetails.get("empresa.id")
 						.toString());
 			}
@@ -145,12 +144,12 @@ public class ServiciosAutenticacion extends BaseController {
 			// respuesta.setMensaje(generarMensaje(null,
 			// Constantes.MENSAJE_ERROR,
 			// "Error al descargar los Permisos", "100", ESTADO_ERROR,
-			// OP_SINCRONIZACION, idUsuario, idEmpresa, null, true)
+			// OP_SINCRONIZACION, idFuncionario, idEmpresa, null, true)
 			// .getMensaje());
 
 			generarMensajeSinRetorno(Constantes.MENSAJE_ERROR,
 					"Error al descargar los Permisos", "100", ESTADO_ERROR,
-					OP_SINCRONIZACION, idUsuario, idEmpresa, null, true);
+					OP_SINCRONIZACION, idFuncionario,  null, true);
 
 			return respuesta;
 		}

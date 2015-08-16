@@ -1,6 +1,3 @@
-/**
- * 
- */
 package py.com.hornero.controller;
 
 import java.util.HashMap;
@@ -19,16 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import py.com.hornero.model.ejb.RolPermisoManager;
-import py.com.hornero.model.entity.Usuario;
+import py.com.hornero.model.entity.Funcionario;
 import py.com.hornero.services.UserDetailsHornero;
 import py.com.hornero.utils.Constantes;
 import py.com.hornero.utils.ExceptionHornero;
 import py.com.hornero.utils.json.JSONObject;
 
-/**
- * @author Hermann Bottger
- * 
- */
+
 @Controller
 @RequestMapping(value = "/")
 public class LoginController extends BaseController {
@@ -78,6 +72,15 @@ public class LoginController extends BaseController {
 	 * 
 	 * @params
 	 */
+	
+	
+	
+	
+	//TODO Verificar todos los metodos para el control de logueo
+	
+	
+	
+	
 	@RequestMapping(value = "/modificarClave", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public HashMap<String, Object> modificarClave(
@@ -86,15 +89,15 @@ public class LoginController extends BaseController {
 
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 		String nombre = "";
 
 		try {
 
-			Usuario usuario = usuarioManager.get(userDetails.getIdUsuario());
+			Funcionario funcionario = funcionarioManager.get(userDetails.getIdFuncionario());
 
-			if (usuario.getNombre() != null && !usuario.getNombre().equals("")) {
-				nombre += usuario.getNombre() + " ";
+			if (funcionario.getNombre() != null && !funcionario.getNombre().equals("")) {
+				nombre += funcionario.getNombre() + " ";
 			}
 
 			// La clave personal del usuario debe contar con una longitud mínima
@@ -105,31 +108,31 @@ public class LoginController extends BaseController {
 								+ "longitud mínima de 7 caracteres.");
 			}
 
-			String claveAnterior = passwordEncoder.encodePassword(claveVieja,
-					usuario.getAlias());
+//			String claveAnterior = passwordEncoder.encodePassword(claveVieja,
+//					usuario.getAlias());
 
-			if (!usuario.getClave().equals(claveAnterior)) {
-				throw new ExceptionHornero(null,"500",
-						"No coincide la clave anterior con la que esta almacenada");
-			}
+//			if (!usuario.getClave().equals(claveAnterior)) {
+//				throw new ExceptionHornero(null,"500",
+//						"No coincide la clave anterior con la que esta almacenada");
+//			}
 
-			String claveCodificada = passwordEncoder.encodePassword(claveNueva,
-					usuario.getAlias());
-
-			usuario.setClave(claveCodificada);
-			usuarioManager.actualizar(usuario, userDetails.getIdUsuario());
+//			String claveCodificada = passwordEncoder.encodePassword(claveNueva,
+//					usuario.getAlias());
+//
+//			usuario.setClave(claveCodificada);
+			funcionarioManager.actualizar(funcionario, userDetails.getIdFuncionario());
 
 			retorno = generarMensaje(retorno, Constantes.MENSAJE_EXITO,
 					"La Clave del usuario " + nombre + " ha sido modificada.",
 					"500", ESTADO_EXITO, OP_MODIFICACION,
-					userDetails.getIdUsuario(), userDetails.getIdEmpresa(),
+					userDetails.getIdFuncionario(), 
 					null, true);
 
 		} catch (Exception e) {
 			retorno = generarMensaje(retorno, Constantes.MENSAJE_ERROR,
 					"Error al modificar clave del usuario ", "300",
-					ESTADO_ERROR, OP_MODIFICACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), e, true);
+					ESTADO_ERROR, OP_MODIFICACION, userDetails.getIdFuncionario(),
+					 e, true);
 
 		}
 

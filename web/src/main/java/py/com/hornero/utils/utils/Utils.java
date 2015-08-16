@@ -58,23 +58,11 @@ public class Utils {
 				entidad.setFechaCreacion(Timestamp.valueOf(objetoJson
 						.getString("fechaCreacion")));
 			}
-			if (objetoJson.has("fechaEliminacion")) {
-				entidad.setFechaEliminacion(Timestamp.valueOf(objetoJson
-						.getString("fechaEliminacion")));
-			}
 			if (objetoJson.has("idUsuarioCreacion")) {
 				entidad.setIdUsuarioCreacion(Long.parseLong(objetoJson
 						.getString("idUsuarioCreacion")));
 			}
-			if (objetoJson.has("idUsuarioEliminacion")) {
-				entidad.setIdUsuarioEliminacion(Long.parseLong(objetoJson
-						.getString("idUsuarioEliminacion")));
-			}
 
-			if (objetoJson.has("origenModificacion")) {
-				entidad.setOrigenModificacion(objetoJson
-						.getString("origenModificacion"));
-			}
 			if (objetoJson.has("activo")) {
 				entidad.setActivo(objetoJson.getString("activo"));
 			}

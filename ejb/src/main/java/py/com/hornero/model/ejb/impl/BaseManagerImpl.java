@@ -12,23 +12,23 @@ import py.com.hornero.model.entity.EntidadBase;
 public abstract class BaseManagerImpl<T extends EntidadBase, ID extends Serializable>
 		extends GenericDaoImpl<T, ID> implements BaseManager<T, ID> {
 
+/**
+ * 
+ **/
 	@Override
-	public T crear(T entidad, Long idUsuario) throws Exception {
+	public T crear(T entidad, Long idFuncionario) throws Exception {
 
 		if (entidad.getFechaCreacion() == null){
 			entidad.setFechaCreacion(new Timestamp(System.currentTimeMillis()));	
 		}
 		
 		if (entidad.getIdUsuarioCreacion() == null){
-			entidad.setIdUsuarioCreacion(idUsuario);	
+			entidad.setIdUsuarioCreacion(idFuncionario);	
 		}
 		
 		entidad.setFechaModificacion(new Timestamp(System.currentTimeMillis()));
-		entidad.setIdUsuarioModificacion(idUsuario);
+		entidad.setIdUsuarioModificacion(idFuncionario);
 		
-		if (entidad.getOrigenModificacion() == null){
-			entidad.setOrigenModificacion("W");	
-		}
 		
 		entidad.setActivo("S");
 
@@ -37,29 +37,25 @@ public abstract class BaseManagerImpl<T extends EntidadBase, ID extends Serializ
 	}
 
 	@Override
-	public T actualizar(T entidad, Long idUsuario) throws Exception {
+	public T actualizar(T entidad, Long idFuncionario) throws Exception {
 
 		entidad.setFechaModificacion(new Timestamp(System.currentTimeMillis()));
-		entidad.setIdUsuarioModificacion(idUsuario);
+		entidad.setIdUsuarioModificacion(idFuncionario);
 		entidad.setActivo("S");
-		entidad.setOrigenModificacion("W");	
 
 		this.update(entidad);
 		return entidad;
 	}
 
 	@Override
-	public T desactivar(ID id, Long idUsuario) throws Exception {
+	public T desactivar(ID id, Long idFuncionario) throws Exception {
 
 		T entidad = this.get(id);
 		entidad.setActivo("N");
-		entidad.setFechaEliminacion(new Timestamp(System.currentTimeMillis()));
-		entidad.setIdUsuarioEliminacion(idUsuario);
 
 		entidad.setFechaModificacion(new Timestamp(System.currentTimeMillis()));
-		entidad.setIdUsuarioModificacion(idUsuario);
+		entidad.setIdUsuarioModificacion(idFuncionario);
 		
-		entidad.setOrigenModificacion("W");	
 
 		this.update(entidad);
 		return entidad;
@@ -70,13 +66,9 @@ public abstract class BaseManagerImpl<T extends EntidadBase, ID extends Serializ
 
 		T entidad = this.get(id);
 		entidad.setActivo("S");
-		entidad.setFechaEliminacion(null);
-		entidad.setIdUsuarioEliminacion(null);
 
 		entidad.setFechaModificacion(new Timestamp(System.currentTimeMillis()));
 		entidad.setIdUsuarioModificacion(idUsuario);
-
-		entidad.setOrigenModificacion("W");	
 
 		this.update(entidad);
 		return entidad;

@@ -51,12 +51,8 @@ public class Localizacion  extends EntidadBase {
 	private Timestamp fechaSincronizacion;	
 
 	@ManyToOne
-	@JoinColumn(name = "usuario")
-	private Usuario usuario;
-	
-	@ManyToOne
-	@JoinColumn(name = "empresa")
-	private Empresa empresa;
+	@JoinColumn(name = "funcionario")
+	private Funcionario Funcionario;
 	
 
 	public Localizacion() {
@@ -148,19 +144,13 @@ public class Localizacion  extends EntidadBase {
 		this.hora = hora;
 	}
 
-	/**
-	 * @return el Usuar de una localización
-	 */
-	public Usuario getUsuario() {
-		return usuario;
+
+	public Funcionario getFuncionario() {
+		return Funcionario;
 	}
 
-	/**
-	 * @param usuario
-	 *            la categoria de Usuario a setear
-	 */
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setFuncionario(Funcionario funcionario) {
+		Funcionario = funcionario;
 	}
 
 	/**
@@ -177,19 +167,6 @@ public class Localizacion  extends EntidadBase {
 		this.fechaSincronizacion = fechaSincronizacion;
 	}
 
-	/**
-	 * @return the empresa
-	 */
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	/**
-	 * @param empresa the empresa to set
-	 */
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
+	
 	
 }

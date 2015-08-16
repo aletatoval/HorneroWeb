@@ -19,25 +19,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import py.com.hornero.model.ejb.LogAppManager;
-import py.com.hornero.model.ejb.UsuarioManager;
+import py.com.hornero.model.ejb.FuncionarioManager;
 import py.com.hornero.model.entity.Empresa;
 import py.com.hornero.model.entity.LogApp;
-import py.com.hornero.model.entity.Usuario;
+import py.com.hornero.model.entity.Funcionario;
 import py.com.hornero.utils.Constantes;
 import py.com.hornero.utils.ExceptionHornero;
 
-/**
- * Controller base para todos los controller. Aquí se disponen los métodos que
- * sean comunes a todos
- * 
- * @author Osmar Olmedo
- * 
- */
 @Controller
 public class BaseController {
 
-	public static final String ESTADO_EXITO = "Aprobado por Tangerine";
-	public static final String ESTADO_ERROR = "Rechazado por Tangerine";
+	public static final String ESTADO_EXITO = "Aprobado por Hornero";
+	public static final String ESTADO_ERROR = "Rechazado por Hornero";
 	public static final String OP_ALTA = "Alta";
 	public static final String OP_MODIFICACION = "Modificacion";
 	public static final String OP_BAJA = "Baja";
@@ -55,8 +48,8 @@ public class BaseController {
 	public static final String OP_SINCRONIZACION = "Sincronizacion";
 	public static final String OP_DESCARGA = "Descarga";
 
-	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/UsuarioManagerImpl")
-	public UsuarioManager usuarioManager;
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/FuncionarioManagerImpl")
+	public FuncionarioManager funcionarioManager;
 
 
 	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/LogAppManagerImpl")
@@ -163,7 +156,7 @@ public class BaseController {
 	public HashMap<String, Object> generarMensaje(
 			HashMap<String, Object> retorno, String tipoMensaje,
 			String mensaje, String codigoError, String estado,
-			String operacion, Long idUsuario, Long idEmpresa, Exception ex,
+			String operacion, Long idFuncionario,  Exception ex,
 			boolean almacenar) {
 
 		if (retorno == null) {
@@ -176,11 +169,8 @@ public class BaseController {
 			log.setOperacion(operacion);
 			log.setFechaAccion(new Timestamp(System.currentTimeMillis()));
 
-			if (idUsuario != null && idUsuario > 0) {
-				log.setUsuario(new Usuario(idUsuario));
-			}
-			if (idEmpresa != null && idEmpresa > 0) {
-				log.setEmpresa(new Empresa(idEmpresa));
+			if (idFuncionario != null && idFuncionario > 0) {
+				log.setFuncionario(new Funcionario(idFuncionario));
 			}
 
 			if (ex != null && ex instanceof ExceptionHornero
@@ -249,7 +239,7 @@ public class BaseController {
 	 */
 	public void generarMensajeSinRetorno(String tipoMensaje, String mensaje,
 			String codigoError, String estado, String operacion,
-			Long idUsuario, Long idEmpresa, Exception ex, boolean almacenar) {
+			Long idFuncionario, Exception ex, boolean almacenar) {
 
 		try {
 
@@ -257,11 +247,8 @@ public class BaseController {
 			log.setOperacion(operacion);
 			log.setFechaAccion(new Timestamp(System.currentTimeMillis()));
 
-			if (idUsuario != null && idUsuario > 0) {
-				log.setUsuario(new Usuario(idUsuario));
-			}
-			if (idEmpresa != null && idEmpresa > 0) {
-				log.setEmpresa(new Empresa(idEmpresa));
+			if (idFuncionario != null && idFuncionario > 0) {
+				log.setFuncionario(new Funcionario(idFuncionario));
 			}
 
 			if (ex != null && ex instanceof ExceptionHornero

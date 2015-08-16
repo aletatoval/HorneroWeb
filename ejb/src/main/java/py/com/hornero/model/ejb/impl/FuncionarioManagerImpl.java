@@ -10,70 +10,68 @@ import java.util.Map;
 
 import javax.ejb.Stateless;
 
-import py.com.hornero.model.ejb.UsuarioManager;
-import py.com.hornero.model.entity.Empresa;
-import py.com.hornero.model.entity.Usuario;
+import py.com.hornero.model.ejb.FuncionarioManager;
+import py.com.hornero.model.entity.Funcionario;
 import py.com.hornero.utils.Constantes;
 import py.com.hornero.utils.ExceptionHornero;
 import py.com.hornero.utils.json.JSONObject;
 
 @Stateless
-public class UsuarioManagerImpl extends BaseManagerImpl<Usuario, Long>
-		implements UsuarioManager {
+public class FuncionarioManagerImpl extends BaseManagerImpl<Funcionario, Long>
+		implements FuncionarioManager {
 
 	
 	@Override
-	protected Class<Usuario> getEntityBeanType() {
-		return Usuario.class;
+	protected Class<Funcionario> getEntityBeanType() {
+		return Funcionario.class;
 	}
 
-	public List<Long> misUsuariosId(Long idUsuario, Long idEmpresa, String rol,
+	public List<Long> misFuncionariosId(Long idFuncionario,  String rol,
 										String rolDeseado, Boolean soloActivos) throws Exception {
 
 		String atributos = "id";
 
-		List<Map<String, Object>> misUsuarios = misUsuariosMap(idUsuario,
-									idEmpresa, atributos, rol, rolDeseado, soloActivos);
+		List<Map<String, Object>> misFuncionarios = misFuncionariosMap(idFuncionario,
+									 atributos, rol, rolDeseado, soloActivos);
 		List<Long> ids = new ArrayList<Long>();
 
-		for (Map<String, Object> usuario : misUsuarios) {
-			if (usuario.containsKey("id") && usuario.get("id") != null
-					&& Long.parseLong(usuario.get("id").toString()) > 0) {
+		for (Map<String, Object> funcionario : misFuncionarios) {
+			if (funcionario.containsKey("id") && funcionario.get("id") != null
+					&& Long.parseLong(funcionario.get("id").toString()) > 0) {
 				
-				ids.add(Long.parseLong(usuario.get("id").toString()));
+				ids.add(Long.parseLong(funcionario.get("id").toString()));
 			} 
 		}
 
 		return ids;
 	}
 
-	public List<Map<String, Object>> misUsuariosMap(Long idUsuario,
-			Long idEmpresa, String atributos, String rol, String rolDeseado,
+	public List<Map<String, Object>> misFuncionariosMap(Long idFuncionario,
+			 String atributos, String rol, String rolDeseado,
 			Boolean soloActivos) throws Exception {
 
 		if (atributos == null || atributos.compareTo("") == 0){
 			atributos = "id,nombre,alias,documento,activo,empresa.id,empresa.nombre,empresa.alias";
 		}
 		
-		List<Map<String, Object>> misUsuarios = null;
-		misUsuarios = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> misFuncionarios = null;
+		misFuncionarios = new ArrayList<Map<String, Object>>();
 		
-		Usuario ejUser = new Usuario();
+		Funcionario ejUser = new Funcionario();
 		if (soloActivos) {
 			ejUser.setActivo("S");
 		}
 
-		ejUser.setEmpresa(new Empresa(idEmpresa));
 		if (rolDeseado != null && !rolDeseado.isEmpty()) {
 //			ejUser.setNombreRol(rolDeseado);
 		}
 		
 		if (rol != null && rol.compareTo(Constantes.ROLADMINSTRADOR) == 0) {
-			misUsuarios = listAtributos(ejUser, atributos.split(","),
+			misFuncionarios = listAtributos(ejUser, atributos.split(","),
 							"alias,nombre".split(","), "asc,asc".split(","));			
 						
 		} else {
-			List<Long> misIdUsuarios = new ArrayList<Long>();
+			List<Long> misIdFuncionarios = new ArrayList<Long>();
 //			Map<String,Object> usuario = getAtributos(new Usuario(idUsuario), "supervisados".split(","));
 //			
 //			if (usuario.containsKey("supervisados") && usuario.get("supervisados") != null){
@@ -85,55 +83,54 @@ public class UsuarioManagerImpl extends BaseManagerImpl<Usuario, Long>
 //					}
 //				}
 //			}
-			misIdUsuarios.add(idUsuario);
-			misUsuarios = listAtributos(ejUser, atributos.split(","), true, null, null, 
+			misIdFuncionarios.add(idFuncionario);
+			misFuncionarios = listAtributos(ejUser, atributos.split(","), true, null, null, 
 									"alias,nombre".split(","), "asc,asc".split(","), true, true,
-									null, null, "id", misIdUsuarios, "OP_IN");			
+									null, null, "id", misIdFuncionarios, "OP_IN");			
 		}
 
-		return misUsuarios;
+		return misFuncionarios;
 	}
 
-	public Map<String, Object> validarUsuario(String alias, String passw,
+	public Map<String, Object> validarFuncionario(String alias, String passw,
 			String atributos) throws Exception {
 
 		Map<String, Object> retorno = new HashMap<String, Object>();
-		Map<String, Object> usuario = null;
+		Map<String, Object> funcionario = null;
 
 		if (atributos == null || atributos.isEmpty()) {
 			atributos = "id,nombre,alias,documento,activo,clave,rol.id,empresa.id,empresa.nombre,empresa.alias,empresa.activo";
 		}
 
-		Usuario usuarioEjemplo = new Usuario();
-		usuarioEjemplo.setAlias(alias);
+		Funcionario usuarioEjemplo = new Funcionario();
 
-		usuario = this.getAtributos(usuarioEjemplo, atributos.split(","), false, true);
-		if (usuario == null) {
+		funcionario = this.getAtributos(usuarioEjemplo, atributos.split(","), false, true);
+		if (funcionario == null) {
 			throw new ExceptionHornero("alias","-2",
 					"El alias no corresponde a ningun usuario");
 		}
 
-		if (!usuario.containsKey("empresa.activo")
-				|| usuario.get("empresa.activo").toString()
+		if (!funcionario.containsKey("empresa.activo")
+				|| funcionario.get("empresa.activo").toString()
 						.compareToIgnoreCase("S") != 0) {
 			throw new ExceptionHornero("empresa","-3",
 					"La empresa del usuario no se encuetra activa");
 		}
 
-		if (!usuario.containsKey("activo")
-				|| usuario.get("activo").toString()
+		if (!funcionario.containsKey("activo")
+				|| funcionario.get("activo").toString()
 						.compareToIgnoreCase("S") != 0) {
 			throw new ExceptionHornero(null,"-4",
 					"El usuario actualmente no se encuestra vigente");
 		}
 
-		if (usuario.get("clave").toString().compareToIgnoreCase(passw) != 0) {
+		if (funcionario.get("clave").toString().compareToIgnoreCase(passw) != 0) {
 			throw new ExceptionHornero(null,"-5",
 					"La contraseña ingresada no es correcta");
 		}
 
-		if (!usuario.containsKey("rol.id")
-				|| usuario.get("rol.id").toString()
+		if (!funcionario.containsKey("rol.id")
+				|| funcionario.get("rol.id").toString()
 						.compareToIgnoreCase("") == 0) {
 			throw new ExceptionHornero(null,"0",
 					"El usuario no tiene asignado ningun Rol");
@@ -141,32 +138,30 @@ public class UsuarioManagerImpl extends BaseManagerImpl<Usuario, Long>
 
 
 		retorno.put("error", false);
-		retorno.put("mensaje", "Usuario autenticado exitosamente");
-		retorno.put("resultado", usuario);
+		retorno.put("mensaje", "Funcionario autenticado exitosamente");
+		retorno.put("resultado", funcionario);
 		return retorno;
 	}
 
 	@Override
-	public Usuario getUsuario(String nombreUsuario, String pass)
+	public Funcionario getFuncionario(String nombreFuncionario, String pass)
 			throws Exception {
-		Usuario usuarioEjemplo = new Usuario();
-		usuarioEjemplo.setAlias(nombreUsuario);
-		usuarioEjemplo.setClave(pass);
+		Funcionario funcionarioEjemplo = new Funcionario();
 
-		Usuario resultado = this.get(usuarioEjemplo);
+		Funcionario resultado = this.get(funcionarioEjemplo);
 		return resultado;
 
 	}
 
 	@Override
-	public List<Usuario> misUsuarios(Long idUsuario, Long idEmpresa,
-			String atributos, String rol, String rolDeseado, Boolean soloActivos)
+	public List<Funcionario> misFuncionarios(Long idFuncionario, String atributos,
+			String rol, String rolDeseado, Boolean soloActivos)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public Map<String, Object> obtenerUsuarioLogueado (String entidad, String atributos) throws Exception {
+	public Map<String, Object> obtenerFuncionarioLogueado (String entidad, String atributos) throws Exception {
 		
 		Map<String, Object> retornoValidacion = null;
 		String linea = null;
@@ -185,10 +180,11 @@ public class UsuarioManagerImpl extends BaseManagerImpl<Usuario, Long>
 			 throw new ExceptionHornero(null,"-1", "Información de acceso incompleta");
 		 }
 
-		retornoValidacion = this.validarUsuario(linea, clave, atributos);
+		retornoValidacion = this.validarFuncionario(linea, clave, atributos);
 		
 		return retornoValidacion;
 	}
+
 
 
 }

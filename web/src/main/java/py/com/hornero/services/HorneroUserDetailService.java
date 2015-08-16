@@ -18,22 +18,19 @@ import org.springframework.stereotype.Service;
 
 import py.com.hornero.controller.BaseController;
 import py.com.hornero.model.ejb.RolPermisoManager;
-import py.com.hornero.model.ejb.UsuarioManager;
-import py.com.hornero.model.entity.Usuario;
+import py.com.hornero.model.ejb.FuncionarioManager;
+import py.com.hornero.model.entity.Funcionario;
 import py.com.hornero.utils.Constantes;
 import py.com.hornero.utils.ExceptionHornero;
 
-/**
- * @author Hermann Bottger
- * 
- */
+
 
 @Service("TangerineUserDetailService")
 public class HorneroUserDetailService extends BaseController implements
 		UserDetailsService {
 
-	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/UsuarioManagerImpl")
-	private UsuarioManager usuarioManager;
+	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/FuncionarioManagerImpl")
+	private FuncionarioManager funcionarioManager;
 
 	@EJB(mappedName = "java:global/horneroapp-ear/horneroapp-ejb/RolPermisoManagerImpl")
 	private RolPermisoManager rolPermisoManager;
@@ -49,53 +46,52 @@ public class HorneroUserDetailService extends BaseController implements
 		List<String> permisosTangerine = null;
 		try {
 
-			Usuario ejemplo = new Usuario();
-			ejemplo.setAlias(username);
+			Funcionario ejemplo = new Funcionario();
+			ejemplo.setNombre(username);
 			ejemplo.setActivo("S");
 
-			Map<String, Object> datosUsuario = usuarioManager
+			Map<String, Object> datosFuncionario = funcionarioManager
 					.getAtributos(
 							ejemplo,
 							"id,alias,clave,nombre,rol.nombre,rol.id,empresa.id,empresa.alias,empresa.nombre"
 									.split(","), false, true);
 
-			if (datosUsuario == null || datosUsuario.isEmpty()) {
+			if (datosFuncionario == null || datosFuncionario.isEmpty()) {
 				throw new ExceptionHornero(null,"AUTH-003",
-						"No se ha encontrado el usuario " + username);
+						"No se ha encontrado el funcionario " + username);
 			}
 
-			if (datosUsuario.get("rol.nombre") == null
-					|| datosUsuario.get("rol.nombre").toString().isEmpty()) {
-				throw new ExceptionHornero(null,"AUTH-004", "El usuario "
+			if (datosFuncionario.get("rol.nombre") == null
+					|| datosFuncionario.get("rol.nombre").toString().isEmpty()) {
+				throw new ExceptionHornero(null,"AUTH-004", "El funcionario "
 						+ username + " no dispone de ningun perfil asignado");
 			}
 
 			String nombre = "";
 
-			if (datosUsuario.get("nombre") != null
-					&& !datosUsuario.get("nombre").toString().isEmpty()) {
-				nombre = datosUsuario.get("nombre").toString();
+			if (datosFuncionario.get("nombre") != null
+					&& !datosFuncionario.get("nombre").toString().isEmpty()) {
+				nombre = datosFuncionario.get("nombre").toString();
 			}
 
 			try {
 				permisosTangerine = rolPermisoManager.listarPermisos(
-						(Long) datosUsuario.get("empresa.id"),
-						(Long) datosUsuario.get("rol.id"));
+						(Long) datosFuncionario.get("empresa.id"),
+						(Long) datosFuncionario.get("rol.id"));
 
 			} catch (Exception e) {
-				generarMensajeSinRetorno(Constantes.MENSAJE_ERROR, "El usuario"
+				generarMensajeSinRetorno(Constantes.MENSAJE_ERROR, "El funcionario"
 						+ username
 						+ " no posee permisos para utilizar la aplicación",
 						"AUTH-006", ESTADO_ERROR, OP_LOGIN,
-						(Long) datosUsuario.get("id"),
-						(Long) datosUsuario.get("empresa.id"), e, false);
+						(Long) datosFuncionario.get("id"), e, false);
 
 			}
 
 			if (permisosTangerine == null || permisosTangerine.isEmpty()
 					|| permisosTangerine.size() < 1) {
 
-				throw new ExceptionHornero(null,"AUTH-006", "El usuario "
+				throw new ExceptionHornero(null,"AUTH-006", "El funcionario "
 						+ username
 						+ " no posee permisos para utilizar la aplicación");
 			}
@@ -108,26 +104,25 @@ public class HorneroUserDetailService extends BaseController implements
 				}
 			}
 
-			permisos.add(new SimpleGrantedAuthority(datosUsuario.get(
+			permisos.add(new SimpleGrantedAuthority(datosFuncionario.get(
 					"rol.nombre").toString()));
 
 			generarMensajeSinRetorno(Constantes.MENSAJE_EXITO, "Login exitoso",
 					"", ESTADO_EXITO, OP_LOGIN,
-					(Long) datosUsuario.get("id"),
-					(Long) datosUsuario.get("empresa.id"), null, false);
+					(Long) datosFuncionario.get("id"), null, false);
 
-			return new UserDetailsHornero(username, datosUsuario.get("clave")
-					.toString(), permisos, nombre, Long.parseLong(datosUsuario
-					.get("empresa.id").toString()), datosUsuario.get(
-					"empresa.nombre").toString(), Long.parseLong(datosUsuario
-					.get("id").toString()), datosUsuario.get("rol.nombre")
+			return new UserDetailsHornero(username, datosFuncionario.get("clave")
+					.toString(), permisos, nombre, Long.parseLong(datosFuncionario
+					.get("empresa.id").toString()), datosFuncionario.get(
+					"empresa.nombre").toString(), Long.parseLong(datosFuncionario
+					.get("id").toString()), datosFuncionario.get("rol.nombre")
 					.toString());
 
 		} catch (Exception e) {
 			// logger.log(Level.SEVERE, e.getMessage(), e);
 			generarMensajeSinRetorno(Constantes.MENSAJE_ERROR, "Ha ocurrido un error interno.",
 					"AUTH-006", ESTADO_ERROR, OP_LOGIN,
-					null,null, e, false);
+					null, e, false);
 			throw new RuntimeException(e);
 		}
 	}

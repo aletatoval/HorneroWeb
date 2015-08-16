@@ -68,7 +68,7 @@ public class RolController extends BaseController {
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
 		Rol ejemplo = new Rol();
 		try {
@@ -154,8 +154,8 @@ public class RolController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"Se listaron exitosamentes los roles", "300",
-					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 null, false);
 
 			meta.put("totalDatos", total);
 			meta.put("pagina", pagina);
@@ -164,8 +164,8 @@ public class RolController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al obtener la lista de roles", "300",
-					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 ex, false);
 		}
 
 		retorno.put("meta", meta);
@@ -189,7 +189,7 @@ public class RolController extends BaseController {
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 		Gson gson = new Gson();
 		try {
 						
@@ -200,7 +200,7 @@ public class RolController extends BaseController {
 				if(empresaEntidad.getPermisos() != null & empresaEntidad.getPermisos().size() != 0){
 					
 					rolPermisoManager.asociarRolPermiso(idEmpresa,empresaEntidad.getRol().getId(),
-							empresaEntidad.getPermisos(), userDetails.getIdUsuario());
+							empresaEntidad.getPermisos(), userDetails.getIdFuncionario());
 				}else{
 					
 					Rol ejRol = new Rol();
@@ -215,7 +215,7 @@ public class RolController extends BaseController {
 					
 					for(Map<String, Object> rpm : misPermisos){
 						
-						rolPermisoManager.desactivar(Long.valueOf(rpm.get("id").toString()), userDetails.getIdUsuario());
+						rolPermisoManager.desactivar(Long.valueOf(rpm.get("id").toString()), userDetails.getIdFuncionario());
 						
 					}
 				}
@@ -225,8 +225,8 @@ public class RolController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"Los permisos se asignaron con éxito", "300", ESTADO_EXITO,
-					OP_ASOCIACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					OP_ASOCIACION, userDetails.getIdFuncionario(),
+					 null, false);
 
 			response.setStatus(201);
 			
@@ -234,8 +234,8 @@ public class RolController extends BaseController {
 			response.setStatus(422);
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al asignar los permisos  al rol", "300", ESTADO_ERROR,
-					OP_ASOCIACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), ex, false);
+					OP_ASOCIACION, userDetails.getIdFuncionario(),
+					 ex, false);
 		}
 		retorno.put("errors", meta);
 		return retorno;
@@ -280,7 +280,7 @@ HashMap<String, Object> obtener(@PathVariable("id") Long id) {
 	HashMap<String, Object> retorno = new HashMap<String, Object>();
 	HashMap<String, Object> meta = new HashMap<String, Object>();
 	UserDetailsHornero userDetails = UserDetailsHornero
-			.getUsuarioAutenticado();
+			.getFuncionarioAutenticado();
 
 	try {
 
@@ -289,8 +289,8 @@ HashMap<String, Object> obtener(@PathVariable("id") Long id) {
 
 		meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 				"El rol se obtuvo exitosamente", "300", ESTADO_EXITO,
-				OP_VISUALIZACION, userDetails.getIdUsuario(),
-				userDetails.getIdEmpresa(), null, false);
+				OP_VISUALIZACION, userDetails.getIdFuncionario(),
+				 null, false);
 
 		retorno.put("rol", rol);
 
@@ -298,8 +298,8 @@ HashMap<String, Object> obtener(@PathVariable("id") Long id) {
 
 		meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 				"Error al obtener el rol solicitado", "300",
-				ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdUsuario(),
-				userDetails.getIdEmpresa(), ex, false);
+				ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+				 ex, false);
 
 	}
 
@@ -322,7 +322,7 @@ public HashMap<String, Object> agregarRol(@RequestBody Rol nuevo,  HttpServletRe
 	HashMap<String, Object> retorno = new HashMap<String, Object>();
 	HashMap<String, Object> meta = new HashMap<String, Object>();
 	UserDetailsHornero userDetails = UserDetailsHornero
-			.getUsuarioAutenticado();
+			.getFuncionarioAutenticado();
 
 	logger.info("Inició correctamente el método agregar rol por el usuario "
 			+ userDetails.getNombreCompleto());
@@ -346,12 +346,12 @@ public HashMap<String, Object> agregarRol(@RequestBody Rol nuevo,  HttpServletRe
 
 
 
-		rolManager.crear(nuevo, userDetails.getIdUsuario());
+		rolManager.crear(nuevo, userDetails.getIdFuncionario());
 
 		meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 				"El rol se agregó con éxito", "300", ESTADO_EXITO,
-				OP_ALTA, userDetails.getIdUsuario(),
-				userDetails.getIdEmpresa(), null, false);
+				OP_ALTA, userDetails.getIdFuncionario(),
+				 null, false);
 
 		retorno.put("rol", nuevo);
 		response.setStatus(201);
@@ -361,8 +361,8 @@ public HashMap<String, Object> agregarRol(@RequestBody Rol nuevo,  HttpServletRe
 		response.setStatus(422);
 		meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 				"Error al agregar el rol", "300", ESTADO_ERROR,
-				OP_ALTA, userDetails.getIdUsuario(),
-				userDetails.getIdEmpresa(), ex, false);
+				OP_ALTA, userDetails.getIdFuncionario(),
+				 ex, false);
 
 	}
 	retorno.put("meta", meta);
@@ -384,7 +384,7 @@ public HashMap<String, Object> modificarRol(@PathVariable("id") Long id,
 	HashMap<String, Object> retorno = new HashMap<String, Object>();
 	HashMap<String, Object> meta = new HashMap<String, Object>();
 	UserDetailsHornero userDetails = UserDetailsHornero
-			.getUsuarioAutenticado();
+			.getFuncionarioAutenticado();
 
 	try {
 
@@ -414,12 +414,12 @@ public HashMap<String, Object> modificarRol(@PathVariable("id") Long id,
 		}
 
 
-		rolManager.actualizar(rol, userDetails.getIdUsuario());
+		rolManager.actualizar(rol, userDetails.getIdFuncionario());
 
 		meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 				"El rol se modifico con éxito", "300", ESTADO_EXITO,
-				OP_ALTA, userDetails.getIdUsuario(),
-				userDetails.getIdEmpresa(), null, false);
+				OP_ALTA, userDetails.getIdFuncionario(),
+				 null, false);
 
 		retorno.put("rol", rol);
 
@@ -427,8 +427,8 @@ public HashMap<String, Object> modificarRol(@PathVariable("id") Long id,
 
 		meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 				"Error al agregar el rol", "300", ESTADO_ERROR,
-				OP_ALTA, userDetails.getIdUsuario(),
-				userDetails.getIdEmpresa(), ex, false);
+				OP_ALTA, userDetails.getIdFuncionario(),
+				 ex, false);
 	}
 	retorno.put("meta", meta);
 	return retorno;

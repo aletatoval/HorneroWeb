@@ -14,10 +14,10 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 import py.com.hornero.controller.BaseController;
 import py.com.hornero.model.ejb.LogAppManager;
-import py.com.hornero.model.ejb.UsuarioManager;
+import py.com.hornero.model.ejb.FuncionarioManager;
 import py.com.hornero.model.entity.Empresa;
 import py.com.hornero.model.entity.LogApp;
-import py.com.hornero.model.entity.Usuario;
+import py.com.hornero.model.entity.Funcionario;
 import py.com.hornero.utils.ExceptionHornero;
 
 public class HorneroPasswordEncoder extends Md5PasswordEncoder {
@@ -25,7 +25,7 @@ public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 	private static final org.slf4j.Logger logger = LoggerFactory
 			.getLogger("horneroapp");
 
-	private UsuarioManager usuarioManager;
+	private FuncionarioManager funcionarioManager;
 
 	private LogAppManager logAppManager;
 
@@ -36,31 +36,31 @@ public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 			throws BadCredentialsException {
 
 		String pass2 = encodePassword(rawPass, salt);
-		Usuario usuario = null;
+		Funcionario funcionario = null;
 
 		try {
 
-			Usuario ejemplo = new Usuario();
-			ejemplo.setAlias(salt.toString());
-			ejemplo.setClave(pass2);
+			Funcionario ejemplo = new Funcionario();
+			ejemplo.setNombre(salt.toString());
+			ejemplo.setContraseña(pass2);
 
-			inicializarUsuarioManager();
+			inicializarFuncionarioManager();
 
-			usuario = usuarioManager.get(ejemplo);
+			funcionario = funcionarioManager.get(ejemplo);
 
-			if (usuario == null) {
+			if (funcionario == null) {
 				throw new BadCredentialsException(manejoMensajes(
 						"AUTH-001",
 						BaseController.ESTADO_ERROR,
 						BaseController.OP_LOGIN,
 						"No se pudo identificar a la línea " + salt.toString()
 								+ ", favor verificar la información ingresada",
-						null, null, null).get(0));
+						 null, null).get(0));
 			}
 
 			manejoMensajes("", BaseController.ESTADO_EXITO,
-					BaseController.OP_LOGIN, "Login exitoso", usuario.getId(),
-					usuario.getEmpresa().getId(), null);
+					BaseController.OP_LOGIN, "Login exitoso", funcionario.getId(),
+					 null);
 			
 			return true;
 
@@ -71,7 +71,7 @@ public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 	}
 
 	public List<String> manejoMensajes(String codigoError, String estado,
-			String operacion, String mensaje, Long idUsuario, Long idEmpresa,
+			String operacion, String mensaje, Long idFuncionario,
 			Exception ex) {
 
 		List<String> respuesta = new ArrayList<String>();
@@ -82,11 +82,8 @@ public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 			log.setOperacion(operacion);
 			log.setFechaAccion(new Timestamp(System.currentTimeMillis()));
 
-			if (idUsuario != null && idUsuario > 0) {
-				log.setUsuario(new Usuario(idUsuario));
-			}
-			if (idEmpresa != null && idEmpresa > 0) {
-				log.setEmpresa(new Empresa(idEmpresa));
+			if (idFuncionario != null && idFuncionario > 0) {
+				log.setFuncionario(new Funcionario(idFuncionario));
 			}
 
 			if (ex != null
@@ -143,7 +140,7 @@ public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 		return respuesta;
 	}
 
-	private void inicializarUsuarioManager() {
+	private void inicializarFuncionarioManager() {
 		if (context == null)
 			try {
 				context = new InitialContext();
@@ -151,11 +148,11 @@ public class HorneroPasswordEncoder extends Md5PasswordEncoder {
 				throw new RuntimeException(
 						"No se puede inicializar el contexto", e1);
 			}
-		if (usuarioManager == null) {
+		if (funcionarioManager == null) {
 			try {
 
-				usuarioManager = (UsuarioManager) context
-						.lookup("java:app/horneroapp-ejb/UsuarioManagerImpl");
+				funcionarioManager = (FuncionarioManager) context
+						.lookup("java:app/horneroapp-ejb/FuncionarioManagerImpl");
 			} catch (NamingException ne) {
 				throw new RuntimeException(
 						"No se encuentra EJB valor Manager: ", ne);

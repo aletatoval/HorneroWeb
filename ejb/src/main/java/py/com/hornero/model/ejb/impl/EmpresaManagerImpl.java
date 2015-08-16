@@ -32,9 +32,6 @@ public class EmpresaManagerImpl extends BaseManagerImpl<Empresa, Long>
 		entidad.setFechaModificacion(new Timestamp(System.currentTimeMillis()));
 		entidad.setIdUsuarioModificacion(idUsuario);
 		
-		if (entidad.getOrigenModificacion() == null){
-			entidad.setOrigenModificacion("W");	
-		}
 		
 		entidad.setActivo("S");
 

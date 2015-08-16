@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import py.com.hornero.model.ejb.LocalizacionManager;
 import py.com.hornero.model.entity.Localizacion;
-import py.com.hornero.model.entity.Usuario;
+import py.com.hornero.model.entity.Funcionario;
 import py.com.hornero.services.UserDetailsHornero;
 import py.com.hornero.utils.Constantes;
 import py.com.hornero.utils.ExceptionHornero;
@@ -55,13 +55,13 @@ public class LocalizacionController extends BaseController {
 		HashMap<String, Object> retorno = new HashMap<String, Object>();
 		HashMap<String, Object> meta = new HashMap<String, Object>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
-		Map<String, Object> usuarioMap = usuarioManager.getAtributos(
-				new Usuario(Long.parseLong(idUsuario.toString())),
+		Map<String, Object> funcionarioMap = funcionarioManager.getAtributos(
+				new Funcionario(Long.parseLong(idUsuario.toString())),
 				"nombre,imei".split(","));
 
-		String nombreUsuario = (String) usuarioMap.get("nombre");
+		String nombreFuncionario = (String) funcionarioMap.get("nombre");
 
 		try {
 
@@ -72,10 +72,10 @@ public class LocalizacionController extends BaseController {
 			 */
 			Localizacion ejemploLoca = new Localizacion();
 
-			ejemploLoca.setUsuario(new Usuario(Long.parseLong(idUsuario
+			ejemploLoca.setFuncionario(new Funcionario(Long.parseLong(idUsuario
 					.toString())));
 
-			ejemploLoca.setImei((String) usuarioMap.get("imei"));
+			ejemploLoca.setImei((String) funcionarioMap.get("imei"));
 
 			resultados = localizacionManager.listUltimaLocalizacion(
 					ejemploLoca,
@@ -89,7 +89,7 @@ public class LocalizacionController extends BaseController {
 
 				Map<String, Object> map = resultados.get(0);
 
-				map.put("nombreUsuario", nombreUsuario);
+				map.put("nombreFuncionario", nombreFuncionario);
 
 				Integer presicion = (new Double(resultados.get(0)
 						.get("precision").toString())).intValue();
@@ -105,23 +105,23 @@ public class LocalizacionController extends BaseController {
 
 			} else {
 				throw new ExceptionHornero(null,"600", "El Usuario "
-						+ nombreUsuario
+						+ nombreFuncionario
 						+ " no posee marcaciones en el día especificado.");
 			}
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"Se obtuvo exitosamente la ubicación", "600", ESTADO_EXITO,
-					OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 null, false);
 
 			retorno.put("ubicacion", resultados.get(0));
 			retorno.put("meta", meta);
 
 		} catch (Exception e) {
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
-					"Error al obtener ubicación del usuario", "600",
-					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), e, false);
+					"Error al obtener ubicación del funcionario", "600",
+					ESTADO_ERROR, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 e, false);
 			retorno.put("meta", meta);
 		}
 
@@ -147,16 +147,16 @@ public class LocalizacionController extends BaseController {
 		// ListaDTO<Map<String, Object>> lista = new ListaDTO<Map<String,
 		// Object>>();
 		UserDetailsHornero userDetails = UserDetailsHornero
-				.getUsuarioAutenticado();
+				.getFuncionarioAutenticado();
 
-		Usuario usuario = usuarioManager.get(Long.parseLong(idUsuario
+		Funcionario funcionario = funcionarioManager.get(Long.parseLong(idUsuario
 				.toString()));
-		String nombreUsuario = "";
-		if (usuario.getNombre() != null) {
-			nombreUsuario = usuario.getNombre();
+		String nombreFuncionario = "";
+		if (funcionario.getNombre() != null) {
+			nombreFuncionario = funcionario.getNombre();
 
 		} else {
-			nombreUsuario = usuario.getNombre();
+			nombreFuncionario = funcionario.getNombre();
 		}
 
 		try {
@@ -203,8 +203,7 @@ public class LocalizacionController extends BaseController {
 			 */
 
 			Localizacion ejemplo = new Localizacion();
-			ejemplo.setImei(usuario.getImei());
-			ejemplo.setUsuario(usuario);
+			ejemplo.setFuncionario(funcionario);
 
 			List<Map<String, Object>> resultados = null;
 			List<Map<String, Object>> resultadosEnvio = null;
@@ -259,8 +258,8 @@ public class LocalizacionController extends BaseController {
 							.parse(fechaTracking));
 					// String hora = map.get("hora").toString();
 					map.put("hora", horaMostrar);
-					map.put("pkUsuario", usuario.getId());
-					map.put("nombreUsuario", nombreUsuario);
+					map.put("pkUsuario", funcionario.getId());
+					map.put("nombreUsuario", nombreFuncionario);
 					map.put("fechaMostrar",
 							sdfSimple.format(sdf.parse(fechaTracking)));
 
@@ -297,8 +296,8 @@ public class LocalizacionController extends BaseController {
 					}
 				}
 			} else {
-				throw new ExceptionHornero(null,"600", "El usuario "
-						+ nombreUsuario
+				throw new ExceptionHornero(null,"600", "El funcionario "
+						+ nombreFuncionario
 						+ " no posee información de ruta del día.");
 			}
 
@@ -308,8 +307,8 @@ public class LocalizacionController extends BaseController {
 
 			meta = generarMensaje(meta, Constantes.MENSAJE_EXITO,
 					"Se listaron exitosamentes las localizaciones", "600",
-					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdUsuario(),
-					userDetails.getIdEmpresa(), null, false);
+					ESTADO_EXITO, OP_VISUALIZACION, userDetails.getIdFuncionario(),
+					 null, false);
 
 			retorno.put("meta", meta);
 			retorno.put("ruta", resultadosEnvio);
@@ -318,7 +317,7 @@ public class LocalizacionController extends BaseController {
 			meta = generarMensaje(meta, Constantes.MENSAJE_ERROR,
 					"Error al obtener ubicación tracking del dia del usuario",
 					"600", ESTADO_ERROR, OP_VISUALIZACION,
-					userDetails.getIdUsuario(), userDetails.getIdEmpresa(), e,
+					userDetails.getIdFuncionario(),  e,
 					false);
 			retorno.put("meta", meta);
 

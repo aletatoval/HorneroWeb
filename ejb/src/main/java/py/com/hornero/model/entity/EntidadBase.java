@@ -41,14 +41,6 @@ public class EntidadBase implements Serializable {
 	@Column(name = "id_usuario_modificacion")
 	private Long idUsuarioModificacion;
 
-	@Column(name = "origen_modificacion")
-	private String origenModificacion;
-
-	@Column(name = "fecha_eliminacion")
-	private Timestamp fechaEliminacion;
-
-	@Column(name = "id_usuario_eliminacion")
-	private Long idUsuarioEliminacion;
 
 	public EntidadBase() {
 
@@ -152,49 +144,5 @@ public class EntidadBase implements Serializable {
 		this.idUsuarioModificacion = idUsuarioModificacion;
 	}
 
-	/**
-	 * @return el origenModificacion de EntidadBase
-	 */
-	public String getOrigenModificacion() {
-		return origenModificacion;
-	}
-
-	/**
-	 * @param origenModificacion
-	 *            el origenModificacion de EntidadBase a setear
-	 */
-	public void setOrigenModificacion(String origenModificacion) {
-		this.origenModificacion = origenModificacion;
-	}
-
-	/**
-	 * @return la fechaEliminacion de EntidadBase
-	 */
-	public Timestamp getFechaEliminacion() {
-		return fechaEliminacion;
-	}
-
-	/**
-	 * @param fechaEliminacion
-	 *            la fechaEliminacion de EntidadBase a setear
-	 */
-	public void setFechaEliminacion(Timestamp fechaEliminacion) {
-		this.fechaEliminacion = fechaEliminacion;
-	}
-
-	/**
-	 * @return el idUsuarioEliminacion de EntidadBase
-	 */
-	public Long getIdUsuarioEliminacion() {
-		return idUsuarioEliminacion;
-	}
-
-	/**
-	 * @param idUsuarioEliminacion
-	 *            el idUsuarioEliminacion de EntidadBase a setear
-	 */
-	public void setIdUsuarioEliminacion(Long idUsuarioEliminacion) {
-		this.idUsuarioEliminacion = idUsuarioEliminacion;
-	}
 
 }
