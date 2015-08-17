@@ -13,10 +13,10 @@ import py.com.hornero.model.entity.Funcionario;
 @Local
 public interface ParametroManager extends GenericDao<Parametro, Long>{
     
-    public Funcionario getSuperUsuario() throws Exception;
+    public Funcionario getSuperFuncionario() throws Exception;
     public String geturlCaos() throws Exception;
     public String getnombreAplicacion() throws Exception;
-    public Funcionario validarSuperUsuario(String nombreUsuario, String pass) throws Exception;
+    public Funcionario validarSuperFuncionario(String nombreFuncionario, String pass) throws Exception;
     public Map<String, Object> ejecutarSQL(String sql, String tipo);
     
 }

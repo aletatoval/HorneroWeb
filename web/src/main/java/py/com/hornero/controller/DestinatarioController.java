@@ -88,10 +88,6 @@ public class DestinatarioController extends BaseController {
 
 			}
 
-			if (idEmpresa != null
-					& idEmpresa.toString().compareToIgnoreCase("") != 0) {
-				ejemplo.setEmpresa(new Empresa(Long.valueOf(idEmpresa)));
-			}
 
 			pagina = pagina != null ? pagina : 1;
 			Integer total = 0;
@@ -157,7 +153,7 @@ public class DestinatarioController extends BaseController {
 		UserDetailsHornero userDetails = UserDetailsHornero
 				.getFuncionarioAutenticado();
 
-		logger.info("Inició correctamente el método agregar destinatario por el usuario "
+		logger.info("Inició correctamente el método agregar destinatario por el funcionario "
 				+ userDetails.getNombreCompleto());
 
 		try {

@@ -5,10 +5,6 @@ package py.com.hornero.utils.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- * @author Carlos Benitez
- * 
- */
 public class FileUpload {
 
 	MultipartFile file;

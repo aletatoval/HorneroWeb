@@ -2,11 +2,6 @@ package py.com.hornero.utils.utils;
 
 import java.io.Serializable;
 
-/**
- * @author Osmar Olmedo
- * 
- */
-
 public class Respuesta<T> implements Serializable{
 	
 	/**

@@ -5,11 +5,8 @@ package py.com.hornero.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 
 
@@ -24,9 +21,6 @@ public class Destinatario extends EntidadBase {
 	@Column(name = "destinatario")
 	private Integer destinatario;
 	
-	@ManyToOne(optional = false)
-    @JoinColumn(name = "empresa", referencedColumnName = "id")
-    private Empresa empresa;
 	
 	public Destinatario() {
 
@@ -56,13 +50,6 @@ public class Destinatario extends EntidadBase {
 		this.destinatario = destinatario;
 	}
 
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
 	
 	
 }

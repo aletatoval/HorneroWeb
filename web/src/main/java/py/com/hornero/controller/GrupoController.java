@@ -154,7 +154,7 @@ public class GrupoController extends BaseController{
 		UserDetailsHornero userDetails = UserDetailsHornero
 				.getFuncionarioAutenticado();
 
-		logger.info("Inició correctamente el método agregar grupo por el usuario "
+		logger.info("Inició correctamente el método agregar grupo por el funcionario "
 				+ userDetails.getNombreCompleto());
 
 		try {

@@ -19,18 +19,18 @@ public class EmpresaManagerImpl extends BaseManagerImpl<Empresa, Long>
 	}
 	
 	@Override
-	public Empresa crear(Empresa entidad, Long idUsuario) throws Exception {
+	public Empresa crear(Empresa entidad, Long idFuncionario) throws Exception {
 
 		if (entidad.getFechaCreacion() == null){
 			entidad.setFechaCreacion(new Timestamp(System.currentTimeMillis()));	
 		}
 		
 		if (entidad.getIdUsuarioCreacion() == null){
-			entidad.setIdUsuarioCreacion(idUsuario);	
+			entidad.setIdUsuarioCreacion(idFuncionario);	
 		}
 		
 		entidad.setFechaModificacion(new Timestamp(System.currentTimeMillis()));
-		entidad.setIdUsuarioModificacion(idUsuario);
+		entidad.setIdUsuarioModificacion(idFuncionario);
 		
 		
 		entidad.setActivo("S");

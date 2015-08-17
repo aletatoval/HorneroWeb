@@ -62,13 +62,13 @@ public abstract class BaseManagerImpl<T extends EntidadBase, ID extends Serializ
 	}
 
 	@Override
-	public T activar(ID id, Long idUsuario) throws Exception {
+	public T activar(ID id, Long idFuncionario) throws Exception {
 
 		T entidad = this.get(id);
 		entidad.setActivo("S");
 
 		entidad.setFechaModificacion(new Timestamp(System.currentTimeMillis()));
-		entidad.setIdUsuarioModificacion(idUsuario);
+		entidad.setIdUsuarioModificacion(idFuncionario);
 
 		this.update(entidad);
 		return entidad;

@@ -30,10 +30,10 @@
 		<intercept-url pattern="/perfil" access="isAuthenticated()" />
 		<intercept-url pattern="/modificarClave" access="isAuthenticated()" />
 
-		<intercept-url pattern="/usuarios" access="isAuthenticated()" />
-		<intercept-url pattern="/usuarios/*/*" access="isAuthenticated()" />
-		<intercept-url pattern="/usuarios/*" access="isAuthenticated()" />
-		<intercept-url pattern="/usuarios*" access="isAuthenticated()" />
+		<intercept-url pattern="/funcionarios" access="isAuthenticated()" />
+		<intercept-url pattern="/funcionarios/*/*" access="isAuthenticated()" />
+		<intercept-url pattern="/funcionarios/*" access="isAuthenticated()" />
+		<intercept-url pattern="/funcionarios*" access="isAuthenticated()" />
 		
 		<intercept-url pattern="/empresas" access="isAuthenticated()" />
 		<intercept-url pattern="/empresas/*/*" access="isAuthenticated()" />

@@ -15,8 +15,13 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "alias", "empresa" }))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "documento" }))
 public class Funcionario extends EntidadBase {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	@Column(name = "nombre")
@@ -61,14 +66,14 @@ public class Funcionario extends EntidadBase {
 
 	/**
 	 * @param id
-	 *            el id de Usuario
+	 *            el id de Funcionario
 	 */
 	public Funcionario(Long id) {
 		super(id);
 	}
 
 	/**
-	 * @return el nombre de Usuario
+	 * @return el nombre de Funcionario
 	 */
 	public String getNombre() {
 		return nombre;
@@ -76,7 +81,7 @@ public class Funcionario extends EntidadBase {
 
 	/**
 	 * @param nombre
-	 *            el nombre de Usuario a setear
+	 *            el nombre de Funcionario a setear
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

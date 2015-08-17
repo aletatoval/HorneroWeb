@@ -3,16 +3,9 @@ package py.com.hornero.utils.utils;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author Osmar Olmedo
- * 
- */
 
 public class RespuestaLista<T> implements Serializable {
     
-    /**
-	 * 
-	 */
     private static final long serialVersionUID = 5653610817878260325L;
     
     private Boolean error;

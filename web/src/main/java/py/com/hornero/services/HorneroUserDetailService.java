@@ -25,7 +25,7 @@ import py.com.hornero.utils.ExceptionHornero;
 
 
 
-@Service("TangerineUserDetailService")
+@Service("HorneroUserDetailService")
 public class HorneroUserDetailService extends BaseController implements
 		UserDetailsService {
 
